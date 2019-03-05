@@ -6,12 +6,11 @@ using namespace std;
 
 int main()
 {
-    int a,total;
+    int a,total = 0;
     cin >> a;
     for(int i = 0;i < a;i++)
     {
         total += (i + 1) * 10000;
-        cout << total << endl;
     }
     cout << total/a << endl;
 }
