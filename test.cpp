@@ -8,22 +8,22 @@ using namespace std;
 
 int main()
 {
-    int N,M;
-    cin >> N >> M;
-    
-    vector<pair<int, int> > LR(M);
-    rep(i,M) cin >> LR[i].first >> LR[i].second;
+    int N,Y;
+    cin >> N >> Y;
 
-    int ans = 0;
-    bool flag;
-    for(int i = 1; i < N+1; i++)
+    rep(i,N+1)
     {
-        flag = true;
-        rep(j,M)
+        rep(j,N+1)
         {
-            if(LR[j].first - i > 0 || LR[j].second - i < 0) flag = false;
+            rep(k,N+1)
+            {
+                if( i+j+k == N && i*10000+j*5000+k*1000 == Y)
+                {
+                    cout << i << " " << j << " " << k << endl;
+                    return 0;
+                }
+            }
         }
-        if(flag) ans++;
     }
-    cout << ans << endl;
+    cout << -1 << " " << -1 << " " << -1 << endl;
 }
