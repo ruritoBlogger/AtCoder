@@ -8,7 +8,8 @@ using namespace std;
 
 int main()
 {
-    string c1,c2,c3;
-    cin >> c1 >> c2 >> c3;
-    cout << c1[0] << c2[1] << c3[2] << endl;
+    ll A,B;
+    cin >> A >> B;
+    if((A+B)%2 != 0) cout << "IMPOSSIBLE" << endl;
+    else cout << (A+B)/2 << endl;
 }

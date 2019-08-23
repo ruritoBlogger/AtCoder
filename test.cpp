@@ -7,23 +7,12 @@ using namespace std;
 #define all(x) (x).begin(),(x).end()
 
 int main()
-{
-    int N,Y;
-    cin >> N >> Y;
+{    cout << 0 << endl;
+    cout << 358979323 - 314159265 - 13791023 << endl;
+    cout << (ll)(846264338- 314159265) * (ll)(358979323 - 314159265 - 13791023)  << endl;
+    cout << 846264338- 314159265   << endl;
+    cout << 327950288- 314159265 - 13791023  << endl;
+    cout << 419716939- 314159265  << endl;
+    cout << 937510582- 314159265  - 13791023<< endl;
 
-    rep(i,N+1)
-    {
-        rep(j,N+1)
-        {
-            rep(k,N+1)
-            {
-                if( i+j+k == N && i*10000+j*5000+k*1000 == Y)
-                {
-                    cout << i << " " << j << " " << k << endl;
-                    return 0;
-                }
-            }
-        }
-    }
-    cout << -1 << " " << -1 << " " << -1 << endl;
 }

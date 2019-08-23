@@ -8,7 +8,9 @@ using namespace std;
 
 int main()
 {
-    string c1,c2,c3;
-    cin >> c1 >> c2 >> c3;
-    cout << c1[0] << c2[1] << c3[2] << endl;
+    int N,D;
+    cin >> N >> D;
+    vector<vector<int> >x(N,vector<int>(D));
+    rep(i,N) rep(j,D) cin >> x[i][j];
+    
 }

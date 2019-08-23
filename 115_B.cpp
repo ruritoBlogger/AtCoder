@@ -8,7 +8,13 @@ using namespace std;
 
 int main()
 {
-    string c1,c2,c3;
-    cin >> c1 >> c2 >> c3;
-    cout << c1[0] << c2[1] << c3[2] << endl;
+    int N;
+    cin >> N;
+    vector<int> p(N);
+    rep(i,N) cin >> p[i];
+
+    sort(all(p));
+    ll ans = 0;
+    rep(i,N-1) ans += p[i];
+    cout << ans + p[p.size()-1]/2 << endl;
 }

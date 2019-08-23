@@ -8,7 +8,13 @@ using namespace std;
 
 int main()
 {
-    string c1,c2,c3;
-    cin >> c1 >> c2 >> c3;
-    cout << c1[0] << c2[1] << c3[2] << endl;
+    int K;
+    cin >> K;
+    
+    ll ans = 0;
+    for(int i = 1;i <= K;i++) if(i%2==0) ans++;
+    if(K%2==0) cout << ans * ans << endl;
+    else cout << ans * (ans + 1) << endl;
+
+
 }

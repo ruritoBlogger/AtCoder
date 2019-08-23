@@ -8,7 +8,10 @@ using namespace std;
 
 int main()
 {
-    string c1,c2,c3;
-    cin >> c1 >> c2 >> c3;
-    cout << c1[0] << c2[1] << c3[2] << endl;
+    ll D,N;
+    cin >> D >> N;
+    if(N==100) N++;
+    if(D == 0)cout << N << endl;
+    else if(D == 1) cout << N * 100 << endl;
+    else cout << N * 10000 << endl;
 }
