@@ -12,15 +12,24 @@ int main()
     cin >> a;
     int ans = 0;
     int tmp = 0;
+    bool flag = false;
     const string b = "ATGC";
+    
     rep(i,a.size())
     {
-        if(!strcmp(a[i],b[0]) || !strcmp(a[i],b[1]) || !strcmp(a[i],b[2]) || !strcmp(a[i],b[3]))
+        if(!flag)tmp = 0;
+        flag = false;
+        rep(j,b.size())
         {
-            if(tmp > ans) ans = tmp;
-            tmp = 0;
+            if(a[i] == b[j])
+            {
+                flag = true;
+                tmp++;
+                break;
+            }
         }
-        tmp++;
+        if(!flag) ans = max(ans, tmp);
     }
+    ans = max(ans, tmp);
     cout << ans << endl;
 }
