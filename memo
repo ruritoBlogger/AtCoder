@@ -1,0 +1,6 @@
+順列: next_permutation
+vectorの最大値: std::vector<ll>::iterator iter = std::max_element(all(x));
+                size_t index = std::distance(x.begin(), iter);
+                最大値: x[index]
+最大値(最小値)を取り出して変更して格納するを繰り返す priority_queue
+
