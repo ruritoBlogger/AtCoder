@@ -4,3 +4,13 @@ vectorの最大値: std::vector<ll>::iterator iter = std::max_element(all(x));
                 最大値: x[index]
 最大値(最小値)を取り出して変更して格納するを繰り返す priority_queue
 
+優先度付きキュー: priority_queue
+例(ABC141_D)
+
+priority_queue<ll> q;
+q.push(4);
+q.push(3);
+q.push(5);
+cout << q.top() << endl; // => 5
+q.pop()
+cout << q.top() << endl; // => 4
