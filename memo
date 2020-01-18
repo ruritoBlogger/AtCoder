@@ -51,9 +51,42 @@ for(set<ll>::iterator itr = s.begin(); itr != s.end(); ++itr) {
 
 --------------------------------------------------------------
 
-最大値(最小値)を取り出して変更して格納するを繰り返す
-priority_queue
+bit全探索
 
+例
+int n = 3;
+
+rep(bit,(1<<n))
+{
+    vector<int> S;
+    rep(i,n)
+    {
+        if (bit & (1<<i)) S.push_back(i);
+    }
+
+    for (int i = 0; i < (int)S.size(); ++i) {
+        cout << S[i] << " ";
+    }
+    cout << endl;
+}
+出力
+
+0: 
+1: 0
+2: 1
+3: 0 1
+4: 2
+5: 0 2
+6: 1 2
+7: 0 1 2
+--------------------------------------------------------------
+
+vector 2次元配列
+
+vector<vector<ll> > a;
+
+sort(大きいやつから)
+sort(all(a),greater<vector<ll> >());
 --------------------------------------------------------------
 
 最大公約数
@@ -78,3 +111,8 @@ q.push(5);
 cout << q.top() << endl; // => 5
 q.pop()
 cout << q.top() << endl; // => 4
+
+q.top()で最小値を使いたい時
+priority_queue<int, vector<int>,greater<int> > q;
+キューをコピーしたい時
+priority_queue<ll> q2 = q;
