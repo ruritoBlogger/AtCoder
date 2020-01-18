@@ -51,7 +51,7 @@ int main()
     ll ans = 0;
 
     for(set<ll>::iterator itr = s.begin(); itr != s.end(); ++itr) {
-        //std::cout << *itr << "\n";      // イテレータの指す先のデータを表示
+        std::cout << *itr << "\n";      // イテレータの指す先のデータを表示
         key *= *itr;
     }
     if( key%2==0 ) key /= 2;

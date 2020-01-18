@@ -1,6 +1,49 @@
-順列: next_permutation
-vectorの最大値: std::vector<ll>::iterator iter = std::max_element(all(x));
-                size_t index = std::distance(x.begin(), iter);
-                最大値: x[index]
-最大値(最小値)を取り出して変更して格納するを繰り返す priority_queue
 
+順列とか辞書順
+next_permutation
+
+--------------------------------------------------------------
+
+vectorの最大値
+std::vector<ll>::iterator iter = std::max_element(all(x));
+size_t index = std::distance(x.begin(), iter);
+最大値: x[index]
+
+--------------------------------------------------------------
+
+被りがないvector
+set
+値の挿入はinsert
+
+例 
+set s;
+s.insert(3);
+s.insert(4);
+
+for(set<ll>::iterator itr = s.begin(); itr != s.end(); ++itr) {
+    cout << *itr << endl;
+}
+
+実行結果
+3
+4
+
+--------------------------------------------------------------
+
+最大値(最小値)を取り出して変更して格納するを繰り返す
+priority_queue
+
+--------------------------------------------------------------
+
+最大公約数
+ll gcd(ll x, ll y)
+{
+	return y==0 ? x:gcd(y,x % y);
+}
+
+最小公倍数
+ll lcm(ll number1,ll number2){
+	return number1 * number2 / gcd(number1,number2);	
+}
+
+--------------------------------------------------------------
