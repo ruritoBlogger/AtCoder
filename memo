@@ -1,6 +1,27 @@
-
 順列とか辞書順
 next_permutation
+
+do
+{
+    // やりたい処理
+
+}
+while(next_permutation(基準となる配列);
+
+例
+vector<int> a = {1,2,3};
+do
+{
+    cout << a << endl;
+}while(next_permutation(all(a))
+
+実行結果
+1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 1 2
+3 2 1
 
 --------------------------------------------------------------
 
@@ -47,3 +68,13 @@ ll lcm(ll number1,ll number2){
 }
 
 --------------------------------------------------------------
+優先度付きキュー: priority_queue
+例(ABC141_D)
+
+priority_queue<ll> q;
+q.push(4);
+q.push(3);
+q.push(5);
+cout << q.top() << endl; // => 5
+q.pop()
+cout << q.top() << endl; // => 4

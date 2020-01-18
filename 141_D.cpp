@@ -11,30 +11,27 @@ int main()
     int N,M;
     cin >> N >> M;
 
-    vector<ll>A(N);
-    rep(i,N) cin >> A[i];
-    
-    sort(all(A),greater<ll>());
-    //cout << endl;
+    priority_queue<ll> q;
+
+    rep(i,N)
+    {
+        ll tmp;
+        cin >> tmp;
+        q.push(tmp);
+    }
+
     rep(i,M)
     {
-        if(N > i)sort(A.begin(),A.begin()+i+1,greater<ll>());
-        else if(i-N+1 < N)
-        {
-            int tmp = (i-N+1)/N;
-            sort(A.begin(), A.begin()+(i - N*(tmp+1) + 1),greater<ll>());
-        }
-        //rep(i,A.size()) cout << A[i] << " ";
-        //cout << endl;
-        if(A[0]  < 2)
-        {
-            cout << 0 << endl;
-            return 0;
-        }
-        A[0] /= 2;
+        ll n = q.top();
+        q.pop();
+        q.push(n/2);
     }
 
     ll ans = 0;
-    rep(i,N) ans += A[i];
+    rep(i,N)
+    {
+        ans += q.top();
+        q.pop();
+    }
     cout << ans << endl;
 }
