@@ -46,7 +46,7 @@ int main()
             int num = 0;
             rep(k,K[j].size())
             {
-                if( use[k] ) num++;
+                if( use[K[j][k]] ) num++;
             }
             if( (p[j] && (num+2)%2 == 0) || (!p[j] && (num+2)%2 != 0) )
             {
