@@ -1,9 +1,106 @@
-順列: next_permutation
-vectorの最大値: std::vector<ll>::iterator iter = std::max_element(all(x));
-                size_t index = std::distance(x.begin(), iter);
-                最大値: x[index]
-最大値(最小値)を取り出して変更して格納するを繰り返す priority_queue
+順列とか辞書順
+next_permutation
 
+do
+{
+    // やりたい処理
+
+}
+while(next_permutation(基準となる配列);
+
+例
+vector<int> a = {1,2,3};
+do
+{
+    cout << a << endl;
+}while(next_permutation(all(a))
+
+実行結果
+1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 1 2
+3 2 1
+
+--------------------------------------------------------------
+
+vectorの最大値
+std::vector<ll>::iterator iter = std::max_element(all(x));
+size_t index = std::distance(x.begin(), iter);
+最大値: x[index]
+
+--------------------------------------------------------------
+
+被りがないvector
+set
+値の挿入はinsert
+
+例 
+set s;
+s.insert(3);
+s.insert(4);
+
+for(set<ll>::iterator itr = s.begin(); itr != s.end(); ++itr) {
+    cout << *itr << endl;
+}
+
+実行結果
+3
+4
+
+--------------------------------------------------------------
+
+bit全探索
+
+例
+int n = 3;
+
+rep(bit,(1<<n))
+{
+    vector<int> S;
+    rep(i,n)
+    {
+        if (bit & (1<<i)) S.push_back(i);
+    }
+
+    for (int i = 0; i < (int)S.size(); ++i) {
+        cout << S[i] << " ";
+    }
+    cout << endl;
+}
+出力
+
+0: 
+1: 0
+2: 1
+3: 0 1
+4: 2
+5: 0 2
+6: 1 2
+7: 0 1 2
+--------------------------------------------------------------
+
+vector 2次元配列
+
+vector<vector<ll> > a;
+
+sort(大きいやつから)
+sort(all(a),greater<vector<ll> >());
+--------------------------------------------------------------
+
+最大公約数
+ll gcd(ll x, ll y)
+{
+	return y==0 ? x:gcd(y,x % y);
+}
+
+最小公倍数
+ll lcm(ll number1,ll number2){
+	return number1 * number2 / gcd(number1,number2);	
+}
+
+--------------------------------------------------------------
 優先度付きキュー: priority_queue
 例(ABC141_D)
 
@@ -14,3 +111,8 @@ q.push(5);
 cout << q.top() << endl; // => 5
 q.pop()
 cout << q.top() << endl; // => 4
+
+q.top()で最小値を使いたい時
+priority_queue<int, vector<int>,greater<int> > q;
+キューをコピーしたい時
+priority_queue<ll> q2 = q;

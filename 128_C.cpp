@@ -8,35 +8,53 @@ using namespace std;
 
 int main()
 {
-    int n,m;
-    cin >> n >> m;
-    int tmp,tmp2;
-    vector<pair<int, int> >s;
-    vector<pair<int, int> > count(m);
-    int high = 0;
-    rep(i,m)
+    int N,M;
+    cin >> N >> M;
+
+    vector<vector<int > >K;
+    rep(i,M)
     {
-        cin >> tmp;
-        rep(j,tmp)
+        int k;
+        cin >> k;
+        vector<int> TMP;
+        rep(i,k)
         {
-            cin >> tmp2;
-            s.push_back(make_pair(i,tmp2));
-            count[i].first++;
-            if(high < count[i].first) high = count[i].first;
-            count[i].second = i;
+            int tmp;
+            cin >> tmp;
+            TMP.push_back(tmp-1);
         }
+        K.push_back(TMP);
     }
-    vector<int> p(m);
-    rep(i,m) cin >> p[i];
-    sort(all(count));
-    
-    vector<bool> right(10);
-    rep(i,2**high)
+    vector<int> p(M);
+    rep(i,M) cin >> p[i];
+
+    ll ans = 0;
+
+    vector<int> array;
+    rep(bit,(1<<N))
     {
-        //i番目の電気を付けない時
-        if(i%2==0)
+        vector<bool> use(M,false);
+        rep(i,N)
         {
-
-
-
+            if (bit & (1<<i)) {
+                use[i] = true;
+            }
+        }
+        bool flag = true;
+        rep(j,K.size())
+        {
+            int num = 0;
+            rep(k,K[j].size())
+            {
+                if( use[K[j][k]] ) num++;
+            }
+            if( (p[j] && (num+2)%2 == 0) || (!p[j] && (num+2)%2 != 0) )
+            {
+                flag = false;
+                break;
+            }
+        }
+        if(flag) ans++;
+    }
+    cout << ans << endl;
 }
