@@ -10,25 +10,24 @@ int main()
 {
     int N;
     cin >> N;
-
     vector<ll>A(N);
     rep(i,N) cin >> A[i];
 
     sort(all(A));
     ll ans = 0;
+    ll tmp = 0;
+    ll last = A[0];
     rep(i,N)
     {
-        if( i+1 != N && A[i] != A[i+1] )
+        if( last != A[i] )
         {
-            ans += 1;
+            if( (tmp+2)%2!=0 ) ans++;
+            last = A[i];
+            tmp = 1;
         }
-        else if( i+1 == N && A[i-1] == A[i] ) ans += 1;
-        else
-        {
-            i += 1;
-        }
+        else tmp++;
     }
-    cout << ans << endl;
+    if( (tmp+2)%2!=0 ) ans++;
 
-    //rep(i,N) cout << A[i] << endl;
+    cout << ans << endl;
 }

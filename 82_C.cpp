@@ -13,47 +13,32 @@ int main()
     vector<ll> a(n);
     rep(i,a.size()) cin >> a[i];
     sort(all(a));
-    
-    ll max = *max_element(all(a));
     ll ans = 0;
-    ll tmp = a.size();
-    if(max > a.size())
+    
+    ll tmp = 0;
+    ll last = a[0];
+    rep(i,a.size())
     {
-        cout << a.size() << endl;
-        return 0;
+        if(last != a[i] && last != tmp)
+        {
+            if( tmp > last) ans += tmp-last;
+            else ans += tmp;
+            tmp = 1;
+            last = a[i];
+        }
+        else if(last != a[i])
+        {
+            last = a[i];
+            tmp = 1;
+        }
+        else tmp++;
     }
-    for(ll i = 0; i < max;i++)
+    
+    if(last != tmp)
     {
-        ll count = std::count(all(a),i+1);
-        if(i > tmp)
-        {
-            if(i+1==max) ans += tmp;
-            else
-            {
-                ans += count;
-                tmp -= count;
-            }
-            continue;
-        }
-        if(count == 0)
-        {
-            continue;
-        }
-        if(count == i+1)
-        {
-            tmp -= count;
-            continue;
-        }
-        else if(count < i+1)
-        {
-            ans += count;
-            tmp -= count;
-        }
-        else
-        {
-            ans += count - (i+1);
-            tmp -= count;
-        }
+        if( tmp > last )ans += tmp-last;
+        else ans += tmp;
     }
+
     cout << ans << endl;
 }

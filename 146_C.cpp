@@ -6,54 +6,51 @@ using namespace std;
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
 
-ll nisin( ll i )
+template < typename T > std::string to_string( const T& n )
 {
-    ll ans = 1;
-    while(true)
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
+
+ll A,B,X;
+
+ll nibu( ll key, ll len )
+{
+    if( key >= 1e9 ) return 1e9;
+    //cout << "key is " << key << " and len is " << len << endl;
+    if( A * key + to_string(key).size() * B > X )
     {
-        if(i < 10) return  ans;
+        if( A * (key-1) + to_string(key-1).size() * B <= X )
+        {
+            return key-1;
+        }
         else
         {
-            i /= 10;
-            ans++;
+            ll tmp_len = len/2;
+            if( tmp_len == 0 ) tmp_len = 1;
+            return nibu( key - tmp_len, tmp_len );
+        }
+    }
+    else
+    {
+        if( A * (key+1) + to_string(key+1).size() * B > X )
+        {
+            return key;
+        }
+        else
+        {   
+            ll tmp_len = len/2;
+            if( tmp_len == 0 ) tmp_len = 1;
+            return nibu( key + tmp_len, tmp_len );
         }
     }
 }
 
 
-
 int main()
 {
-    ll A,B,X;
     cin >> A >> B >> X;
-    ll ans = 0;
-    ll ans_i = 0;
-
-    if(A+B > 100000000)
-    {
-        for(ll i = 1;i <= 1000000000;i++)
-        {
-            if( A*(i*10) + B*nisin(i*10) < X) i *= 10;
-            if(A*i + B*nisin(i) > X) break;
-            else if(ans < A*i + B*nisin(i))
-            {
-                ans = A*i + B*nisin(i);
-                ans_i = i;
-            }
-        }
-    }
-    else
-    {
-        for(ll i = 1000000000;i > 0;i--)
-        {
-            if( A*(i/10) + B*nisin(i/10) > X) i /= 10;
-            if(X >= A*i + B*nisin(i))
-            {
-                ans = A*i + B*nisin(i);
-                ans_i = i;
-                break;
-            }
-        }
-    }
-    cout << ans_i << endl;
+    if( A + B > X ) cout << 0 << endl;
+    else cout << nibu( 1e8 * 5, 1e8 * 5 ) << endl;
 }

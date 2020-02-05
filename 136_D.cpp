@@ -11,123 +11,68 @@ int main()
     string s;
     cin >> s;
 
-    int keap = 0;
-    vector<int> ans(s.size(),0);
-    int longest = 0;
-    int tmp = 0;
-    int tmp2 = 0;
-    rep(i,s.size()+1)
-    {
-        if(s[i] == 'R' && tmp2 == 0) tmp++;
-        else if(s[i] == 'L' && tmp == 0) tmp2++;
-        else
-        {
-            if(longest < max(tmp,tmp2))longest = max(tmp,tmp2);
-            tmp = 0;
-            tmp2 = 0;
-            if(s[i] == 'R') tmp++;
-            else tmp2++;
-        }
-    }
-    tmp = 0;
-    tmp2 = 0;
-    bool flag = true;
-    longest--;
+    bool flag = false;
+    ll tmp_R = 0;
+    ll tmp_L = 0;
+    vector<ll>ans(s.size(),0);
     rep(i,s.size())
     {
-        if(s[i] == 'R')
+        if(s[i] == 'L')
         {
-            if(tmp2 != 0)
+            flag = true;
+            tmp_L++;
+        }
+        else if(flag)
+        {
+            if( (tmp_R+tmp_L+2)%2 == 0 )
             {
-                if((tmp2+tmp)%2 == 0)
-                {
-                    ans[i-tmp2] += (tmp+tmp2)/2;
-                    ans[i-tmp2-1]+= (tmp+tmp2)/2;
-                }
-                else if(max(tmp, tmp2) - 1 == longest)
-                {
-                    if(longest%2 == 1 && tmp < tmp2)
-                    {
-                        ans[ans.size()-tmp2] += (tmp+tmp2-1)/2;
-                        ans[ans.size()-tmp2 - 1] += (tmp+tmp2+1)/2;
-                    }
-                    else if(longest%2 == 1)
-                    {
-                        ans[ans.size()-tmp2] += (tmp+tmp2+1)/2;
-                        ans[ans.size()-tmp2 - 1] += (tmp+tmp2-1)/2;
-                    }
-                    else
-            {
-                ans[ans.size()-tmp2] += (tmp+tmp2-1)/2;
-                ans[ans.size()-tmp2 - 1] += (tmp+tmp2+1)/2;
+                ans[i-tmp_L] = (tmp_R+tmp_L)/2;
+                ans[i-tmp_L-1] = (tmp_R+tmp_L)/2;
             }
-
+            else
+            {
+                if( (tmp_R+2)%2==0 )
+                {
+                    ans[i-tmp_L-1] = (tmp_R+tmp_L)/2;
+                    ans[i-tmp_L] = tmp_R+tmp_L - ans[i-tmp_L-1];
                 }
                 else
                 {
-                    if((longest - max(tmp, tmp2) + 1)%2 == 1)
-                    {
-                        ans[i-tmp2] += tmp;
-                        ans[i-tmp2-1] += tmp2;
-                    }
-                    else
-                    {
-                        ans[i-tmp2] += tmp2;
-                        ans[i-tmp2-1] += tmp;
-                    }
+                    ans[i-tmp_L] = (tmp_R+tmp_L)/2;
+                    ans[i-tmp_L-1] = tmp_R+tmp_L-ans[i-tmp_L];
                 }
-                tmp = 0;
-                tmp2 = 0;
             }
-            tmp++;
+            flag = false;
+            tmp_L = 0;
+            tmp_R = 1;
         }
-        else
-        {
-            tmp2++;
-        }
-    }
-    if(tmp2 != 0)
-    {
-        if((tmp2+tmp)%2 == 0)
-        {
-            ans[ans.size()-tmp2] += (tmp+tmp2)/2;
-            ans[ans.size()-tmp2 - 1]+= (tmp+tmp2)/2;
-        }
-        else if(max(tmp, tmp2) - 1 == longest)
-        {
-            if(longest%2 == 1 && tmp < tmp2)
-            {
-                ans[ans.size()-tmp2] += (tmp+tmp2-1)/2;
-                ans[ans.size()-tmp2 - 1] += (tmp+tmp2+1)/2;
-            }
-            else if(longest%2 == 1)
-            {
-                ans[ans.size()-tmp2] += (tmp+tmp2+1)/2;
-                ans[ans.size()-tmp2 - 1] += (tmp+tmp2-1)/2;
-            }
-            else
-            {
-                ans[ans.size()-tmp2] += (tmp+tmp2-1)/2;
-                ans[ans.size()-tmp2 - 1] += (tmp+tmp2+1)/2;
-            }
-        }
-        else
-        {
-            if((longest - max(tmp, tmp2) + 1)%2 == 1)
-            {
-                ans[ans.size()-tmp2] += tmp;
-                ans[ans.size()-tmp2 - 1] += tmp2;
-            }
-            else
-            {
-                ans[ans.size()-tmp2] += tmp2;
-                ans[ans.size()-tmp2 - 1] += tmp;
-            }
-        }
-        tmp = 0;
-        tmp2 = 0;
+        else tmp_R++;
     }
 
-    rep(i,ans.size()) cout << ans[i] << " ";
+    if( (tmp_R+tmp_L+2)%2 == 0 )
+    {
+        ans[ans.size()-tmp_L] = (tmp_R+tmp_L)/2;
+        ans[ans.size()-tmp_L-1] = (tmp_R+tmp_L)/2;
+    }
+    else
+    {
+        if( (tmp_R+2)%2==0 )
+        {
+            ans[ans.size()-tmp_L-1] = (tmp_R+tmp_L)/2;
+            ans[ans.size()-tmp_L] = tmp_R+tmp_L - ans[ans.size()-tmp_L-1];
+        }
+        else
+        {
+            ans[ans.size()-tmp_L] = (tmp_R+tmp_L)/2;
+            ans[ans.size()-tmp_L-1] = tmp_R+tmp_L-ans[ans.size()-tmp_L];
+        }
+    }
+
+
+    rep(i,ans.size())
+    {
+        cout << ans[i];
+        if(i+1 != ans.size()) cout << " ";
+    }
     cout << endl;
 }
