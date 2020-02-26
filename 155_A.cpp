@@ -15,10 +15,13 @@ template < typename T > std::string to_string( const T& n )
 
 int main()
 {
-    int A,B;
-    cin >> A >> B;
+    int A,B,C;
+    cin >> A >> B >> C;
 
-    if(A > 12) cout << B << endl;
-    else if( A > 5 ) cout << B/2 << endl;
-    else cout << 0 << endl;
+    set<int> ans;
+    ans.insert(A);
+    ans.insert(B);
+    ans.insert(C);
+    if( ans.size() == 2 ) cout << "Yes" << endl;
+    else cout << "No" << endl;
 }

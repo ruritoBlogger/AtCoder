@@ -15,10 +15,21 @@ template < typename T > std::string to_string( const T& n )
 
 int main()
 {
-    int A,B;
-    cin >> A >> B;
+    ll N;
+    cin >> N;
 
-    if(A > 12) cout << B << endl;
-    else if( A > 5 ) cout << B/2 << endl;
-    else cout << 0 << endl;
+    vector<pair<ll, ll> > A;
+    rep(i,N)
+    {
+        ll tmp;
+        cin >> tmp;
+        A.push_back(make_pair(tmp, i+1));
+    }
+    sort(all(A));
+    rep(i,N)
+    {
+        cout << A[i].second;
+        if( i+1 != N ) cout << " ";
+    }
+    cout << endl;
 }

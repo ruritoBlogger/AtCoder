@@ -15,10 +15,19 @@ template < typename T > std::string to_string( const T& n )
 
 int main()
 {
-    int A,B;
-    cin >> A >> B;
+    int H,W;
+    cin >> H >> W;
+    vector<string> s(H);
+    rep(i,H) cin >> s[i];
 
-    if(A > 12) cout << B << endl;
-    else if( A > 5 ) cout << B/2 << endl;
-    else cout << 0 << endl;
+    rep(i,W+2) cout << '#';
+    cout << endl;
+    rep(i,H)
+    {
+        cout << '#' << s[i] << '#' << endl;
+    }
+    rep(i,W+2) cout << '#';
+    cout << endl;
+
+
 }
