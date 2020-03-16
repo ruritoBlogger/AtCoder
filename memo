@@ -185,3 +185,8 @@ q.top()で最小値を使いたい時
 priority_queue<int, vector<int>,greater<int> > q;
 キューをコピーしたい時
 priority_queue<ll> q2 = q;
+
+--------------------------------------------------------------
+BFS
+
+ABC151 Dを見る

@@ -23,22 +23,19 @@ int main()
     ll N,K;
     cin >> N >> K;
 
-    vector<double> p(N);
-    rep(i,N) cin >> p[i];
-    rep(i,N) p[i] = (1+p[i])/2;
-    double ans = 0;
-    double key = 0;
-    rep(i,K) key += p[i];
+    vector<ll> H(N);
+    rep(i,N) cin >> H[i];
 
-    ll left = 0;
-    ll right = K;
-    while( right < N )
+    sort(all(H),greater<ll>());
+
+    rep(i,min(N,K)) H[i] = 0;
+
+    ll ans = 0;
+    rep(i,N)
     {
-         key +=  p[right] - p[left];
-         ans = max(ans, key);
-         right++;
-         left++;
+        ans += H[i];
     }
     cout << ans << endl;
+
 
 }
