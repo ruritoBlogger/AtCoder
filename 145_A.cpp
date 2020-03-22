@@ -6,10 +6,18 @@ using namespace std;
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
 
+template < typename T > std::string to_string( const T& n )
+{
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
+
 int main()
 {
-    string s,t;
-    cin >> s >> t;
+    int r;
+    cin >> r;
 
-    cout << t << s << endl;
+    cout << r *r << endl;
+
 }

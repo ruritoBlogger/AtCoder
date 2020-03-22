@@ -6,41 +6,103 @@ using namespace std;
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
 
+template < typename T > std::string to_string( const T& n )
+{
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
+
 int main()
 {
-    int N;
-    cin >> N;
-    
-    int n = 0;
-    vector<int> P(N,0);
-    vector<int> M(N,0);
-    rep(i,N)
+    int n;
+    cin >> n;
+    vector<vector<pair<int, int> > > A;
+    rep(i,n)
     {
-        int tmp;
-        cin >> tmp;
-        rep(j,tmp)
+        int tmp_a;
+        cin >> tmp_a;
+        vector<pair<int, int> > tmp_xy(tmp_a);
+        rep(j,tmp_a)
         {
-            int tmp1,tmp2;
-            cin >> tmp1 >> tmp2;
-            if(tmp2 == 0)
+            cin >> tmp_xy[j].first >> tmp_xy[j].second;
+        }
+        A.push_back(tmp_xy);
+    }
+    /*
+    rep(i,n)
+    {
+        rep(j,A[i].size()) cout << A[i][j].first << " " << A[i][j].second << endl;
+        cout << endl;
+    }
+    */
+
+    int ANS = 0;
+
+    rep(bit,(1<<n))
+    {
+        vector<int> S;
+        rep(i,n)
+        {
+            if (bit & (1<<i)) S.push_back(i);
+        }
+
+        
+        // Sに格納されていない人を正直者とする
+        vector<int> ans(n,-1);
+        int S_key = 0;
+        bool flag = true;
+        
+        rep(i,n)
+        {
+            if( S.size() == 0 || i != S[S_key] ) continue;
+            else 
             {
-                n++;
-                P[tmp-1]++;
-            }
-            else
-            {
-                M[tmp-1]++;
+                S_key++;
+                ans[i] = 0;
             }
         }
+
+        S_key = 0;
+        rep(i,n)
+        {
+            // 正直者の時
+            if( S.size() == 0 || i != S[S_key] )
+            {
+                // 正直者の発言をansに格納していく
+                rep(j,A[i].size())
+                {
+                    if( ans[A[i][j].first-1] == -1 ) ans[A[i][j].first-1] = A[i][j].second;
+                    // 正直者の発言が矛盾している場合
+                    else if( ans[A[i][j].first-1] != A[i][j].second )
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            else S_key++;
+
+            // 正直者が矛盾している時
+            if( !flag ) break;
+        }
+        
+        if(flag)
+        {
+            /*
+            cout << "S[i] is ";
+            rep(i,S.size()) cout << S[i] << " ";
+            cout << endl;
+            rep(i,ans.size()) cout << ans[i] << " ";
+            cout << endl;
+            cout << endl;
+            */
+
+            // Sの配列の長さとans[i]に含まれている0の個数が異なる場合は答えに含めない
+            int ans_zero_cnt = 0;
+            rep(i,ans.size()) if( ans[i] == 0 ) ans_zero_cnt++;
+            if( ans_zero_cnt == S.size() )ANS = max( ANS, (int)(n - S.size()) );
+        }
     }
-    
-    //rep(i,N) cout << a[i] << endl;
-    int p= 0;
-    rep(i,N) p += P[i];
-    int m=0;
-    rep(i,N) m += M[i];
-    
-    if(N-n != 0) cout << N - n << endl;
-    else if(p == m) cout << 0 << endl;
-    else cout << N-1 << endl;
+    cout << ANS << endl;
 }

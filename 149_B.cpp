@@ -8,13 +8,26 @@ using namespace std;
 
 int main()
 {
-    int N;
-    string s,t;
-    cin >> N >> s >> t;
+    ll A,B,K;
+    cin >> A >> B >> K;
 
-    rep(i,N)
+    if( A < K )
     {
-        cout << s[i] << t[i];
+        K -= A;
+        A = 0;
     }
-    cout << endl;
+    else
+    {
+        A -= K;
+        cout << A << " " << B << endl;
+        return 0;
+    }
+    if( B < K )
+    {
+        cout << 0 << " " << 0 << endl;
+    }
+    else
+    {
+        cout << 0 << " " << B-K << endl;
+    }
 }
