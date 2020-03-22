@@ -2,9 +2,11 @@
 using namespace std;
 
 #define ll long long
+#define INF_LL 1LL << 60
 #define INF 99999999
 #define MOD (ll)1000000007
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, a, n) for(int i = a; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
 
 template < typename T > std::string to_string( const T& n )
@@ -17,27 +19,26 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+
 int main()
 {
-    int X;
-    cin >> X;
+    int N, K;
+    cin >> N >> K;
+    vector<int> h(N);
+    rep(i,N) cin >> h[i];
 
-    while(true)
+    vector<ll> dp(N, INF_LL);
+    dp[0] = 0;
+
+    rep(i,N)
     {
-        bool flag = true;
-        rep(i,sqrt(X)-2)
+        REP(j, 1, K+1)
         {
-            if( X%(i+2) == 0 )
-            {
-                flag = false;
-                break;
-            }
+            if( i - j < 0 )break;
+            chmin( dp[i], dp[i-j] + abs(h[i] - h[i-j]) );
         }
-        if(flag)
-        {
-            cout << X << endl;
-            return 0;
-        }
-        X++;
     }
+    //rep(i,dp.size()) cout << dp[i] << " ";
+    //cout << endl;
+    cout << dp[N-1] << endl;
 }

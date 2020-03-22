@@ -23,21 +23,22 @@ int main()
     int N;
     cin >> N;
 
-    vector<int> P(N);
-    rep(i,N) cin >> P[i];
+    vector<int> first(N);
+    rep(i,N) cin >> first[i];
+    vector<int> second(N);
+    rep(i,N) cin >> second[i];
+
+    vector<int> a;
+    rep(i,N) a.push_back(i+1);
     
-    int key = P[0];
-    int ans = N;
-    rep(i,N)
+    ll i = 1;
+    ll first_pos = 1; 
+    ll second_pos = 1; 
+    do
     {
-        if( key < P[i] )
-        {
-            ans--;
-        }
-        key = min(key, P[i]);
-    }
-
-    cout << ans << endl;
-            
-
+        if( a == first ) first_pos = i;
+        if( a == second ) second_pos = i;
+        i++;
+    } while(next_permutation(all(a)));
+    cout << abs(first_pos-second_pos) << endl;
 }
