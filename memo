@@ -112,6 +112,11 @@ for(set<ll>::iterator itr = s.begin(); itr != s.end(); ++itr) {
 3
 4
 
+要素があるか確認
+if(s.find(探したい要素) != s.end)
+{
+    あるよ
+}
 --------------------------------------------------------------
 
 bit全探索
@@ -127,7 +132,8 @@ rep(bit,(1<<n))
         if (bit & (1<<i)) S.push_back(i);
     }
 
-    for (int i = 0; i < (int)S.size(); ++i) {
+    for (int i = 0; i < (int)S.size(); ++i)
+    {
         cout << S[i] << " ";
     }
     cout << endl;
@@ -179,3 +185,8 @@ q.top()で最小値を使いたい時
 priority_queue<int, vector<int>,greater<int> > q;
 キューをコピーしたい時
 priority_queue<ll> q2 = q;
+
+--------------------------------------------------------------
+BFS
+
+ABC151 Dを見る

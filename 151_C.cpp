@@ -17,27 +17,38 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+
 int main()
 {
-    int X;
-    cin >> X;
+    int N,M;
+    cin >> N >> M;
+    
+    set<int> ACs;
+    multiset<int> WAs;
+    
+    int AC_result = 0;
+    int WA_result = 0;
 
-    while(true)
+    rep(i,M)
     {
-        bool flag = true;
-        rep(i,sqrt(X)-2)
+        int tmp;
+        string result;
+        cin >> tmp >> result;
+
+        if( result == "WA" )
         {
-            if( X%(i+2) == 0 )
+            if( ACs.find(tmp) == ACs.end() ) WAs.insert(tmp);
+        }
+        else
+        {
+            if( ACs.find(tmp) == ACs.end() )
             {
-                flag = false;
-                break;
+                AC_result++;
+                WA_result += WAs.count(tmp);
+                WAs.erase(tmp);
             }
+            ACs.insert(tmp);
         }
-        if(flag)
-        {
-            cout << X << endl;
-            return 0;
-        }
-        X++;
     }
+    cout << AC_result << " " << WA_result << endl;
 }

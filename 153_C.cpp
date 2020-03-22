@@ -17,27 +17,25 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+
 int main()
 {
-    int X;
-    cin >> X;
+    ll N,K;
+    cin >> N >> K;
 
-    while(true)
+    vector<ll> H(N);
+    rep(i,N) cin >> H[i];
+
+    sort(all(H),greater<ll>());
+
+    rep(i,min(N,K)) H[i] = 0;
+
+    ll ans = 0;
+    rep(i,N)
     {
-        bool flag = true;
-        rep(i,sqrt(X)-2)
-        {
-            if( X%(i+2) == 0 )
-            {
-                flag = false;
-                break;
-            }
-        }
-        if(flag)
-        {
-            cout << X << endl;
-            return 0;
-        }
-        X++;
+        ans += H[i];
     }
+    cout << ans << endl;
+
+
 }

@@ -15,10 +15,20 @@ template < typename T > std::string to_string( const T& n )
 
 int main()
 {
-    int A,B;
-    cin >> A >> B;
+    ll X,Y;
+    cin >> X >> Y;
+    
+    ll tmp = X;
+    ll ans = 0;
+    ll key = 0;
+    while ( X <= Y )
+    {
+        X *= 2;
+        ans++;
+    }
+    cout << ans << endl;
 
-    if(A > 12) cout << B << endl;
-    else if( A > 5 ) cout << B/2 << endl;
-    else cout << 0 << endl;
+
+
+
 }
