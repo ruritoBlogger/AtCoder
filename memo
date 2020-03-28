@@ -169,6 +169,20 @@ ll lcm(ll number1,ll number2){
 	return number1 /gcd(number1,number2) * number2;	
 }
 
+約数全列挙
+template<typename T> vector<ll> divisor( T n)
+{
+  vector<ll> ret;
+  for(ll i = 1; i * i <= (ll)(n); i++) {
+    if(n % i == 0) {
+      ret.push_back(i);
+      if(i * i != n) ret.push_back(n / i);
+    }
+  }
+  sort(all(ret));
+  return ret;
+}
+
 --------------------------------------------------------------
 優先度付きキュー: priority_queue
 例(ABC141_D)
