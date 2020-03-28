@@ -12,6 +12,19 @@ int top_s = s[0]-'0';
 
 --------------------------------------------------------------
 
+文字列の大小について
+
+string tmp = "AaBb";
+
+setに突っ込むと -> "ABab" となる
+
+小文字かどうかの判定
+
+if(tmp[i] < 'a' ) 大文字
+else 小文字
+
+--------------------------------------------------------------
+
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
