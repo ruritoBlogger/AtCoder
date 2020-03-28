@@ -11,6 +11,8 @@ using namespace std;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+void put_double(double obj){printf("%.12f\n",obj);};
+
 template < typename T > std::string to_string( const T& n )
 {
     std::ostringstream stm ;
@@ -22,6 +24,6 @@ int main()
 {
     double L;
     cin >> L;
-
-    cout << L/3.0 * L/3.0 * L/3.0 << endl;
+    
+    put_double(L/3.0*L/3.0*L/3.0);
 }

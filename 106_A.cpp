@@ -24,33 +24,9 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
-    int H,N;
-    cin >> H >> N;
+    int A,B;
+    cin >> A >> B;
 
-    vector<int> A(N);
-    vector<int> B(N);
-    rep(i,N) cin >> A[i] >> B[i];
-
-
-
-    vector<vector<ll> >dp(N, vector<ll>(H+2, INF_LL));
-    dp[0][0] = 0;
-
-    rep(i,N)
-    {
-        rep(j, H+2)
-        {
-            if( i > 0 ) chmin(dp[i][j], dp[i-1][j]);
-            if( j >= A[i] ) chmin(dp[i][j], dp[i][j-A[i]]+B[i]);
-        }
-    }
-    rep(i, N)
-    {
-        rep(j,dp[i].size()) cout << dp[i][j] << " ";
-        cout << endl;
-    }
-
-
-
+    cout << A*B - A-B+1 << endl;
 
 }

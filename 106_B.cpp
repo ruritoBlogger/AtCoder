@@ -18,39 +18,39 @@ template < typename T > std::string to_string( const T& n )
     return stm.str() ;
 }
 
+template<typename T> vector<ll> divisor( T n)
+{
+  vector<ll> ret;
+  for(ll i = 1; i * i <= (ll)(n); i++) {
+    if(n % i == 0) {
+      ret.push_back(i);
+      if(i * i != n) ret.push_back(n / i);
+    }
+  }
+  sort(all(ret));
+  return ret;
+}
+
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 
 int main()
 {
-    int H,N;
-    cin >> H >> N;
+    int N;
+    cin >> N;
 
-    vector<int> A(N);
-    vector<int> B(N);
-    rep(i,N) cin >> A[i] >> B[i];
-
-
-
-    vector<vector<ll> >dp(N, vector<ll>(H+2, INF_LL));
-    dp[0][0] = 0;
-
-    rep(i,N)
+    vector<ll> keys;
+    if( N < 105 ) cout << 0 << endl;
+    else
     {
-        rep(j, H+2)
+        int ans = 0;
+        REP(i,105, N+1)
         {
-            if( i > 0 ) chmin(dp[i][j], dp[i-1][j]);
-            if( j >= A[i] ) chmin(dp[i][j], dp[i][j-A[i]]+B[i]);
+            if(i%2==0)continue;
+            keys = divisor(i);
+            if( keys.size() == 8 ) ans++;
         }
+        cout << ans << endl;
     }
-    rep(i, N)
-    {
-        rep(j,dp[i].size()) cout << dp[i][j] << " ";
-        cout << endl;
-    }
-
-
-
-
 }
