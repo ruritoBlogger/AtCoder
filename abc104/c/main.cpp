@@ -3,67 +3,41 @@ using namespace std;
 
 #define ll long long
 #define INF 99999999
+#define INF_LL 1LL << 60
+#define MOD (ll)1000000007
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, a, n) for(int i = a; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
 
-int D,G;
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-vector<pair<ll, ll> >pc;
-vector<pair<ll, ll> >wa;
+void put_double(double obj){printf("%.12f\n",obj);};
 
-ll dfs(int g, vector<bool>isUsed)
+template < typename T > std::string to_string( const T& n )
 {
-    if(g == D) return 0;
-    else if(g <= D*100)
-    {
-        for(int i = D-1;i > -1;i--)
-        {
-            if(!isUsed[i])
-            {
-                return g/( (i) * 100);
-            }
-        }
-    }
-
-    ll ans = INF;
-    rep(i,D)
-    {
-        if(!isUsed[i] && g >= wa[i].first)
-        {
-            isUsed[i] = false;
-            ans = min(ans, dfs( g - wa[i].first, isUsed) + pc[wa[i].second].first );
-            cout << "now g is " << g << " and looking is " << wa[i].first << " and ans is " << ans << endl;
-        }
-        else if(!isUsed[i] && g <= pc[i].first * 100 * (i+1))
-        {
-            rep(j,pc[i].first)
-            {
-                if(g >= pc[i].first * 100 * (j+1))
-                {
-                    isUsed[i] = false;
-                    ans = min(ans, dfs( g - pc[i].first * 100 * (j+1), isUsed) + (i+1));
-                    break;
-                }
-            }
-        }
-    }
-    return ans;
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
 }
 
 int main()
 {
+    int D;
+    ll G;
     cin >> D >> G;
 
-    pc.resize(D);
-    wa.resize(D);
-    rep(i,D)
+    vector<ll> p(D);
+    vector<ll> c(D);
+    rep(i,D) cin >> p[i] >> c[i];
+
+
+    vector<vector<ll> > dp(D+1, vector<ll>(G/100, 0));
+
+    rep(i,DP+1)
     {
-        cin >> pc[i].first >> pc[i].second;
-        wa[i].first = pc[i].first * (i + 1) * 100 + pc[i].second;
-        wa[i].second = i;
-    }
-    sort(all(wa),greater<pair<ll, ll> >());
-    //rep(i,D) cout << wa[i].first << " " << wa[i].second << endl;
-    vector<bool>isUsed(D,false);
-    cout << dfs(G, isUsed) << endl;
+        rep(j, p[i]-1)
+        {
+            chmax( dp[i+1][j+1+i], dp[i][j]+1 );
+
 }

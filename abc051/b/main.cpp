@@ -24,5 +24,17 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int K,S;
+    cin >> K >> S;
 
+    ll ans = 0;
+
+    rep(X,K+1)
+    {
+        rep(Y,K+1)
+        {
+            if( S-X-Y >= 0 && S-X-Y <= K )ans++;
+        }
+    }
+    cout << ans << endl;
 }

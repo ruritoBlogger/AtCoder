@@ -1,10 +1,10 @@
 #!/bin/bash
 
-num=138
+num=160
 
 while [ : ]
 do
-    if [ $num -lt 130 ]
+    if [ $num -lt 100 ]
     then
         break
     fi

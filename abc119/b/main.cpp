@@ -1,33 +1,40 @@
-#include<iostream>
-#include<vector>
-#include<string>
-
+#include<bits/stdc++.h>
 using namespace std;
+
+#define ll long long
+#define INF 99999999
+#define INF_LL 1LL << 60
+#define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, a, n) for(int i = a; i < (int)(n); i++)
+#define all(x) (x).begin(),(x).end()
+
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+
+void put_double(double obj){printf("%.12f\n",obj);};
+
+template < typename T > std::string to_string( const T& n )
+{
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
 
 int main()
 {
-    int a;
-    cin >> a;
-    vector<double> b(a);
-    vector<string> c(a);
-    for(int i = 0; i < a;i++)
-    {
-        cin >> b[i] >> c[i];
-    }
+    int N;
+    cin >> N;
+
     double ans = 0;
-    for(int i = 0;i < c.size();i++)
+
+    rep(i,N)
     {
-        if(c[i] =="JPY")
-        {
-            ans += b[i];
-        }
-        else
-        {
-            ans += b[i] * 380000.0;
-        }
+        double x;
+        string tmp;
+        cin >> x >> tmp;
+
+        if( tmp == "JPY" ) ans += x;
+        else ans += x * 380000.0;
     }
     cout << ans << endl;
-    
-
-    return 1;
 }

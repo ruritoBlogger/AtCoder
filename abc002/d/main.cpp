@@ -24,5 +24,36 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,M;
+    cin >> N >> M;
 
+    vector<int> x(M);
+    vector<int> y(M);
+
+    rep(i,M) cin >> x[i] >> y[i];
+    int ans = 0;
+
+    rep(bit,(1<<N))
+    {
+        set<int> S;
+        rep(i,N)
+        {
+            if (bit & (1<<i)) S.insert(i+1);
+        }
+       
+        int num = 0;
+        for( set<int>::iterator itr = S.begin(); itr != S.end(); itr++)
+        {
+            rep(j, M)
+            {
+                if( x[j] == *itr )
+                {
+                    if( S.find(y[j]) != S.end() ) num++;
+                }
+            }
+        }
+        if(num == S.size()-1) chmax(ans, num+1);
+    }
+    
+    cout << ans << endl;
 }
