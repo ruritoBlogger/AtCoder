@@ -71,6 +71,10 @@ template <typename T> T mod_sub (T a, T b, T m)
 --------------------------------------------------------------
 
 二項係数
+
+#define MAX 510000
+long long fac[MAX], finv[MAX], inv[MAX];
+
 // テーブルを作る前処理
 void COMinit()
 {

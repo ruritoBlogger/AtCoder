@@ -24,5 +24,45 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int H,W;
+    cin >> H >> W;
 
+    vector<vector<int> >c(10, vector<int>(10));
+    vector<vector<int> >result(10, vector<int>(10));
+    
+    rep(i,10)
+    {
+        rep(j,10)
+        {
+            cin >> c[i][j];
+            result[i][j] = c[i][j];
+        }
+    }
+
+    vector<vector<int> > A(H, vector<int>(W));
+    rep(i,H)
+    {
+        rep(j,W) cin >> A[i][j];
+    }
+
+    rep(k,10)
+    {
+        rep(i,10)
+        {
+            rep(j,10)
+            {
+                result[i][j] = min(result[i][j], result[i][k] + result[k][j]);
+            }
+        }
+    }
+
+    ll ans = 0;
+    rep(i,H)
+    {
+        rep(j,W)
+        {
+            if(A[i][j] > -1 ) ans += result[A[i][j]][1];
+        }
+    }
+    cout << ans << endl;
 }

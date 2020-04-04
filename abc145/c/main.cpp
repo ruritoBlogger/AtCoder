@@ -24,5 +24,32 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
 
+    vector<vector<int> >x(N,vector<int>(2));
+
+    rep(i,N) cin >> x[i][0] >> x[i][1];
+
+    vector<int> ary(N,1);
+    rep(i,N) ary[i] += i;
+
+    double total = 0;
+
+    do
+    {
+        rep(i,N-1)
+        {
+            int key = ary[i]-1;
+            int next_key = ary[i+1]-1;
+
+            total += sqrt(pow(x[key][0]-x[next_key][0],2) + pow(x[key][1]-x[next_key][1],2));
+        }
+    }
+    while(next_permutation(all(ary)));
+
+    double num = 1.0;
+    rep(i,N) num *= (i+1);
+    
+    put_double(total/num);
 }

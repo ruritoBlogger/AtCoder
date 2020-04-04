@@ -27,30 +27,39 @@ int main()
     int H,N;
     cin >> H >> N;
 
-    vector<int> A(N);
-    vector<int> B(N);
-    rep(i,N) cin >> A[i] >> B[i];
+    vector<int> Damage(N);
+    vector<int> MP(N);
+    rep(i,N) cin >> Damage[i] >> MP[i];
 
+    std::vector<int>::iterator iter = std::max_element(all(Damage));
+    size_t index = std::distance(Damage.begin(), iter);
 
-
-    vector<vector<ll> >dp(N, vector<ll>(H+2, INF_LL));
+    vector<vector<ll> > dp(N+1, vector<ll>(H+Damage[index]+1,INF_LL));
     dp[0][0] = 0;
 
     rep(i,N)
     {
-        rep(j, H+2)
+        rep(j,dp[i].size())
         {
-            if( i > 0 ) chmin(dp[i][j], dp[i-1][j]);
-            if( j >= A[i] ) chmin(dp[i][j], dp[i][j-A[i]]+B[i]);
+            chmin(dp[i+1][j], dp[i][j]);
+            if( j >= Damage[i] )
+            {
+                chmin(dp[i+1][j], dp[i][j-Damage[i]] + MP[i]);
+                chmin(dp[i+1][j], dp[i+1][j-Damage[i]] + MP[i]);
+            }
         }
     }
-    rep(i, N)
+    ll ans = INF_LL;
+    /*
+    rep(i,dp.size())
     {
-        rep(j,dp[i].size()) cout << dp[i][j] << " ";
+        rep(j,11) cout << dp[i][j] << " ";
         cout << endl;
     }
-
-
-
-
+    */
+    REP(i, H, dp[N].size())
+    {
+        chmin(ans, dp[N][i]);
+    }
+    cout << ans << endl;
 }
