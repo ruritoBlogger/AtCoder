@@ -24,5 +24,51 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,M;
+    cin >> N >> M;
 
+    vector<int> A(M);
+    vector<int> B(M);
+    rep(i,M) cin >> A[i] >> B[i];
+    //cout << endl;
+
+    rep(i,N)
+    {
+        ll ans = 0;
+        set<int> friends;
+        // 友達抜き出す
+        rep(j,M)
+        {
+            if( A[j]-1 == i ) friends.insert(B[j]);
+            if( B[j]-1 == i ) friends.insert(A[j]);
+        }
+        /*
+        for( set<int>::iterator itr = friends.begin(); itr != friends.end(); itr++ ) cout << *itr << " ";
+        cout << endl;
+        */
+
+        set<int> maybe_friends;
+        
+        for( set<int>::iterator itr = friends.begin(); itr != friends.end(); itr++ )
+        {
+            rep(j,M)
+            {
+                if( A[j] == *itr && B[j]-1 != i && friends.find(B[j]) == friends.end() && maybe_friends.find(B[j]) == maybe_friends.end() )
+                {
+                    //cout << A[j] << " " << B[j] << endl;
+                    ans++;
+                    maybe_friends.insert(B[j]);
+                }
+                if( B[j] == *itr && A[j]-1 != i && friends.find(A[j]) == friends.end() && maybe_friends.find(A[j]) == maybe_friends.end())
+                {
+                    //cout << A[j] << " " << B[j] << endl;
+                    ans++;
+                    maybe_friends.insert(A[j]);
+                }
+            }
+        }
+        cout << ans << endl;
+        //cout << " and ans is " <<  ans << endl;
+        //cout << endl;
+    }
 }

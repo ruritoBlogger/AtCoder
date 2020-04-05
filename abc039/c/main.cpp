@@ -24,5 +24,30 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
 
+    vector<int> keys;
+    vector<string> ans;
+    ans.push_back("Si");
+    ans.push_back("La");
+    ans.push_back("La");
+    ans.push_back("So");
+    ans.push_back("So");
+    ans.push_back("Fa");
+    ans.push_back("Fa");
+    ans.push_back("Mi");
+    ans.push_back("Re");
+    ans.push_back("Re");
+    ans.push_back("Do");
+    ans.push_back("Do");
+
+    rep(i,s.size()-6)
+    {
+        if( s[i] == 'W' && s[i+1] == 'W' && s[i+6] == 'W' )
+        {
+            cout << ans[i] << endl;
+            return 0;
+        }    
+    }
 }

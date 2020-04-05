@@ -21,47 +21,79 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-ll N,K;
-vector<ll> A;
-vector<ll> F(N);
-
-ll nibu( int key, int len )
-{
-    bool flag = true;
-    ll tmp_K = K;
-    rep(i,N)
-    {
-        while( A[i] * F[i] <= key && tmp_K > 0 )
-        {
-            A[i]--;
-            tmp_K--;
-        }
-        if( tmp_K == 0 && A[i] * F[i] > key ) flag=false;
-    }
-        
-    if( !flag ) return nibu( key - len, len/2 + 1 );
-    else return nibu( key + len, len/2+1 );
-}
 
 int main()
 {
+    ll N,K;
     cin >> N >> K;
 
-    rep(i,N)
-    {
-        ll tmp;
-        cin >> tmp;
-        A.push_back(tmp);
-    }
-    
-    rep(i,N)
-    {
-        ll tmp;
-        cin >> tmp;
-        A.push_back(tmp);
-    }
+    vector<ll> A(N);
+    rep(i,N) cin >> A[i];
 
-    sort(all(A));
+    vector<ll> F(N);
+    rep(i,N) cin >> F[i];
+
+    vector<ll> up_A = A;
+    sort(all(A),greater<ll>());
+    sort(all(up_A));
     sort(all(F),greater<ll>());
 
+    ll tmp_K = K;
+    rep(i,N)
+    {
+        if( A[i] > tmp_K )
+        {
+            A[i] -= tmp_K;
+            break;
+        }
+        else
+        {
+            tmp_K -= A[i];
+            A[i] = 0;
+        }
+    }
+
+    tmp_K = K;
+    rep(i,N)
+    {
+        if( up_A[i] > tmp_K )
+        {
+            up_A[i] -= tmp_K;
+            break;
+        }
+        else
+        {
+            tmp_K -= up_A[i];
+            up_A[i] = 0;
+        }
+    }
+
+    ll ans = INF_LL;
+
+    rep(i,N)
+    {
+        ans += A[i] * F[i];
+    }
+    ll up_ans = 0;
+
+    rep(i,N)
+    {
+        up_ans += up_A[i] * F[i];
+    }
+    chmin(ans, up_ans);
+    sort(all(F));
+    up_ans = 0;
+
+    rep(i,N)
+    {
+        up_ans += A[i] * F[i];
+    }
+    chmin(ans, up_ans);
+
+    up_ans = 0;
+    rep(i,N)
+    {
+        up_ans += up_A[i] * F[i];
+    }
+    cout << min(ans, up_ans) << endl;
 }
