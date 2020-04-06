@@ -3,6 +3,71 @@
 
 --------------------------------------------------------------
 
+ダイクストラ法
+
+
+#define MAX_V (ll)1e5+1
+
+struct edge {
+    ll to;
+    ll cost;
+};
+
+// <最短距離, 頂点の番号>
+#define P pair<ll, ll>
+
+// Vは頂点数
+ll V;
+vector<edge> G[MAX_V];
+vector<ll> d(MAX_V, INF_LL);
+
+void dijkstra(ll s) {
+    priority_queue<P, vector<P>, greater<P> > que;
+    d[s] = 0;
+    que.push(P(0, s));
+
+    while (!que.empty()) {
+        P p = que.top();
+        que.pop();
+        ll v = p.second;
+        if (d[v] < p.first) continue;
+
+        for (ll i=0; i<G[v].size(); ++i) {
+            edge e = G[v][i];
+            if (d[e.to] > d[v] + e.cost) {
+                d[e.to] = d[v] + e.cost;
+                que.push(P(d[e.to], e.to));
+            }
+        }
+    }
+}
+
+// 使う時
+
+// グラフを生成する
+rep(i, N)
+{
+    cin >> a >> b >> c;
+
+    // a, bは長さcで繋がっている
+    edge e = {b, c};
+    G[a].push_back(e);
+    edge e = {a, c};
+    G[b].push_back(e);
+}
+
+// 頂点0 を起点にダイクストラ
+dijkstra(0);
+
+rep(i,d.size())
+{
+    cout << "頂点0から頂点" << i << "までの距離は" << d[i] << endl;
+}
+
+
+
+--------------------------------------------------------------
+
 文字から数字に変換
 
 string s = "123";
