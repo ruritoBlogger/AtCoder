@@ -24,5 +24,17 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,K;
+    cin >> N >> K;
 
+    vector<int> x(N);
+    rep(i,N) cin >> x[i];
+
+    ll ans = 0;
+
+    rep(i,N)
+    {
+        ans += min( x[i], K-x[i] )*2;
+    }
+    cout << ans << endl;
 }

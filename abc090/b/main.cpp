@@ -24,5 +24,16 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int A,B;
+    cin >> A >> B;
+    int ans = 0;
 
+    REP(i, A, B+1)
+    {
+        string tmp = to_string(i);
+        string tmp2 = tmp;
+        reverse(all(tmp2));
+        if( tmp == tmp2 )ans++;
+    }
+    cout << ans << endl;
 }

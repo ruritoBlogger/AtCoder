@@ -24,5 +24,9 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int x,a,b;
+    cin >> x >> a >> b;
 
+    if( abs(x-a) > abs(x-b) ) cout << "B" << endl;
+    else if( abs(x-a) < abs(x-b) ) cout << "A" << endl;
 }

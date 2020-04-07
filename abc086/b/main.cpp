@@ -24,5 +24,21 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string a,b;
+    cin >> a >> b;
+    
+    string key = a+b;
 
+    ll ans = 0;
+    rep(i,key.size()) ans += (key[i]-'0')*pow(10,key.size()-i-1);
+
+    rep(i,ans)
+    {
+        if( i*i == ans )
+        {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    cout << "No" << endl;
 }

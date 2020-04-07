@@ -24,5 +24,8 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    ll X,t;
+    cin >> X >> t;
 
+    cout << max((ll)0, X-t) << endl;
 }

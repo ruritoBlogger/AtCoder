@@ -3,39 +3,38 @@ using namespace std;
 
 #define ll long long
 #define INF 99999999
+#define INF_LL 1LL << 60
+#define MOD (ll)1000000007
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, a, n) for(int i = a; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
+
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+
+void put_double(double obj){printf("%.12f\n",obj);};
+
+template < typename T > std::string to_string( const T& n )
+{
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
 
 int main()
 {
-    int a,b,c,x;
-    cin >> a >> b >> c >> x;
+    int A,B,C,X;
+    cin >> A >> B >> C >> X;
+
     int ans = 0;
-    rep(i,a)
+
+    rep(i,A+1)
     {
-        rep(j,b)
+        rep(j,B+1)
         {
-            int tmp = x;
-            tmp -= (500*i);
-            if(tmp < 0 ) continue;
-            else if(tmp == 0) ans++;
-            else
+            rep(k,C+1)
             {
-                tmp -= (100*j);
-                if(tmp < 0 ) continue;
-                else if(tmp == 0)
-                {
-                    //cout <<"B" << endl;
-                    ans++;
-                }
-                else
-                {
-                    if(tmp <= c*50)
-                    {
-                        ans++;
-                        //cout <<"C" << endl;
-                    }
-                }
+                if( i*500 + j*100 + k*50 == X ) ans++;
             }
         }
     }

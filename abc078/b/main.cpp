@@ -24,5 +24,13 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    ll X,Y,Z;
+    cin >>X >> Y >> Z;
+    ll ans = 0;
 
+    REP(i, 1, X+1)
+    {
+        if( Z*2+Y+ (i-1)*(Y+Z) <= X ) chmax(ans, (ll)i);
+    }
+    cout << ans << endl;
 }

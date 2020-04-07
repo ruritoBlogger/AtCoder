@@ -24,5 +24,21 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int A,B;
+    cin >> A >> B;
+    string s;
+    cin >> s;
 
+    multiset<char> tmp;
+    rep(i,s.size()) tmp.insert(s[i]);
+
+    if( tmp.find('-') != tmp.end() && tmp.count('-') == 1 )
+    {
+        if( s[A] == '-' )
+        {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    cout << "No" << endl;
 }

@@ -24,5 +24,15 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    ll N;
+    cin >> N;
 
+    string tmp = to_string(N);
+
+    ll X = 0;
+
+    rep(i,tmp.size()) X += (tmp[i]-'0');
+
+    if( N%X == 0 ) cout << "Yes" << endl;
+    else cout << "No" << endl;
 }

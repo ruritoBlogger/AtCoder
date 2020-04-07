@@ -24,5 +24,32 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int H,W;
+    cin >> H >> W;
 
+    vector<string> S(H);
+    rep(i,H) cin >> S[i];
+
+    rep(i,H)
+    {
+        rep(j,W)
+        {
+            if( S[i][j] == '.' )
+            {
+                int cnt = 0;
+                REP(dx, -1, 2)
+                {
+                    REP(dy, -1, 2)
+                    {
+                        if( dx == dy && dx == 0 )continue;
+                        if( i + dy < 0 || i+dy >= H ) continue;
+                        if( j + dx < 0 || j+dx >= W ) continue;
+                        if( S[i+dy][j+dx] == '#' )cnt++;
+                    }
+                }
+                S[i][j] = to_string(cnt)[0];
+            }
+        }
+    }
+    rep(i,H) cout << S[i] << endl;
 }

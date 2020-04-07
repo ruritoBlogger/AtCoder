@@ -24,5 +24,12 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    ll A,B,K;
+    cin >> A >> B >> K;
+    set<ll> ans;
 
+    REP(i,A,A+K) ans.insert(min(B,(ll)i));
+    rep(i,K) ans.insert(max(A, B-K+1+i));
+
+    for(set<ll>::iterator itr = ans.begin(); itr != ans.end(); itr++) cout << *itr << endl;
 }

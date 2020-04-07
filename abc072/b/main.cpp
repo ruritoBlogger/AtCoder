@@ -24,5 +24,12 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
 
+    rep(i,s.size())
+    {
+        if( (i+2)%2==0 ) cout << s[i];
+    }
+    cout << endl;
 }

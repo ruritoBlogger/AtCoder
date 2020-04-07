@@ -24,5 +24,24 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,A,B;
+    cin >> N >> A >> B;
 
+    ll ans = 0;
+
+    REP(i, 1, N+1)
+    {
+        string tmp = to_string(i);
+        int key = 0;
+
+        rep(j,tmp.size())
+        {
+            key += tmp[j]-'0';
+        }
+        //cout << key << endl;
+
+        if( A <= key && key <= B ) ans += i;
+    }
+
+    cout << ans << endl;
 }

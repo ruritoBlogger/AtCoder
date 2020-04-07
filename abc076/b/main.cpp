@@ -24,5 +24,14 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,K;
+    cin >> N >> K;
 
+    ll ans = 1;
+
+    rep(i,N)
+    {
+        chmax(ans, min(ans*2, ans+K) );
+    }
+    cout << ans << endl;
 }

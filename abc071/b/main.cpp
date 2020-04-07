@@ -24,5 +24,21 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
+    set<char> ans;
+    rep(i,s.size()) ans.insert(s[i]);
 
+    set<char> key;
+    rep(i,26) key.insert('a'+i);
+
+    for(set<char>::iterator itr = key.begin(); itr != key.end(); itr++)
+    {
+        if( ans.find(*itr) == ans.end() )
+        {
+            cout << *itr << endl;
+            return 0;
+        }
+    }
+    cout << "None" << endl;
 }

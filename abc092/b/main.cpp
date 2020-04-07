@@ -24,5 +24,23 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,D,X;
+    cin >> N >> D >> X;
 
+    vector<int> A(N);
+    rep(i,N) cin >> A[i];
+
+    rep(i,N)
+    {
+        ll time = 1;
+        X++;
+
+        while( time+A[i] <= D )
+        {
+            time += A[i];
+            X++;
+        }
+        //cout << X << endl;
+    }
+    cout << X << endl;
 }

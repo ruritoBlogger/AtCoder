@@ -24,5 +24,26 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
+    vector<string> s(N);
+    rep(i,N) cin >> s[i];
+    multiset<string> set_s;
+    rep(i,N) set_s.insert(s[i]);
 
+
+    int M;
+    cin >> M;
+    vector<string> t(M);
+    rep(i,M) cin >> t[i];
+    multiset<string> set_t;
+    rep(i,M) set_t.insert(t[i]);
+
+    int ans = 0;
+    for(multiset<string>::iterator itr = set_s.begin(); itr != set_s.end(); itr++)
+    {
+        if( set_t.find( *itr ) != set_t.end() ) chmax(ans, (int)(set_s.count(*itr)-set_t.count(*itr)) );
+        else chmax(ans, (int)(set_s.count(*itr)) );
+    }
+    cout << ans << endl;
 }
