@@ -5,55 +5,47 @@
 
 //UnionFind
 
-class UnionFind {
-public:
-    // 親の番号を格納する。親だった場合は-(その集合のサイズ)
-    vector<int> Parent;
- 
-    UnionFind(int N) {
-        Parent = vector<int>(N, -1);
+struct UnionFind {
+    // 親ノードの番号を持つメンバ変数
+    // ただし自分が親の時は-x(xは自身を含めた子ノードの数)
+    vector<int> par;
+    
+    //　コンストラクタでの初期化1(初期値-1を持つn次元配列)
+    UnionFind(int n) : par(n, -1) { }
+    void init(int n) { par.assign(n, -1); }
+    
+    // 与えられたノードの親ノードの番号を返すメンバ関数
+    int root(int x) {
+        // もしも親ノードが0以下なら、それは初期値なので自身が親
+        if (par[x] < 0) return x;
+        // 親ノードを再帰的に一番上までたどって返す
+        // 単にroot(par[x])ではなく代入してるのは、根に直接張り直すため
+        else return par[x] = root(par[x]);
     }
- 
-    // Aがどのグループに属しているか調べる
-    int root(int A) {
-        if (Parent[A] < 0) return A;
-        return Parent[A] = root(Parent[A]);
+    
+    // もし根が同じかどうかの判定
+    bool same(int x, int y) {
+        return root(x) == root(y);
     }
+    
+    // ２つの根をマージする処理
+    bool unite(int x, int y) {
+        // 根をたどって、同じなら何もしない
+        x = root(x); y = root(y);
+        if (x == y) return false;
  
-    // 自分のいるグループの頂点数を調べる
-    int size(int A) {
-        return -Parent[root(A)];//親をとってきたい]
-    }
+        // xもyも今は親ノードなので、子の数を比べる
+        if (par[x] > par[y]) swap(x, y); // merge technique
  
-    // AとBをくっ付ける
-    bool unite(int A, int B) {
-        // AとBを直接つなぐのではなく、root(A)にroot(B)をくっつける
-        A = root(A);
-        B = root(B);
-        if (A == B) {
-            //すでにくっついてるからくっ付けない
-            return false;
-        }
- 
-        // 大きい方(A)に小さいほう(B)をくっ付ける
-        // 大小が逆だったらひっくり返す
-        if (size(A) < size(B)) {
-            swap(A, B);
-        }
- 
-        // Aのサイズを更新する
-        Parent[A] += Parent[B];
-        // Bの親をAに変更する
-        Parent[B] = A;
- 
+        // 小さい方を親ノードにする
+        par[x] += par[y];
+        par[y] = x;
         return true;
     }
-
-    // 2つの頂点が同じ木に属しているか
-    bool same(int a, int b) {
-        int ra = root(a);
-        int rb = root(b);
-        return ra == rb;
+    
+    // 親ノードに入っている番号*-1 = この木のノード数を返す。
+    int size(int x) {
+        return -par[root(x)];
     }
 };
 
