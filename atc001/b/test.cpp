@@ -2,14 +2,15 @@
 using namespace std;
 
 #define ll long long
-#define INF_LL 1LL << 60
 #define INF 99999999
+#define INF_LL 1LL << 60
 #define MOD (ll)1000000007
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
-#define rrep(i, n) for(int i = (int)n-1; i >= 0; i--)
 #define REP(i, a, n) for(int i = a; i < (int)(n); i++)
-#define RREP(i, a, n) for(int i = (int)(n)-1; i >= a; i--)
 #define all(x) (x).begin(),(x).end()
+
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 void put_double(double obj){printf("%.12f\n",obj);};
 
@@ -19,9 +20,6 @@ template < typename T > std::string to_string( const T& n )
     stm << n ;
     return stm.str() ;
 }
-
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 struct UnionFind {
     // 親ノードの番号を持つメンバ変数
@@ -69,45 +67,18 @@ struct UnionFind {
 
 int main()
 {
-ll N, M;
-    cin >> N >> M;
- 
-    vector<ll> A(M);
-    vector<ll> B(M);
- 
-    rep(i, M){
-        cin >> A[i] >> B[i];
-        A[i]--;
-        B[i]--;
-    }
- 
-    vector<ll> ans;
-    ll count = N*(N-1)/2;
- 
+    int N,Q;
+    cin >> N >> Q;
+
     UnionFind uf(N);
- 
-    // 辺を1つずつ足していく
-    rrep(i, M){
- 
-        // 現在の非連結ペアの数を格納
-        ans.push_back(count);
- 
-        // 同じ木に属すなら処理終了
-        if(uf.same(A[i], B[i])) continue;
- 
-        // 新たにくっついたときに連結できる様になるペアの数を数える
-        ll pairs = uf.size(A[i]) * uf.size(B[i]);
- 
-        // 答えからペアの数を引く
-        count -= pairs;
- 
-        //最後にマージ処理をする
-        uf.unite(A[i], B[i]);
+
+    rep(i,Q)
+    {
+        int p,a,b;
+        cin >> p >> a >> b;
+
+        if(p==0) uf.unite(a,b);
+        else if(uf.same(a,b)) cout << "Yes" << endl;
+        else cout << "No" << endl;
     }
- 
-    rrep(i, M){
-        cout << ans[i] << endl;
-    }
- 
-    return 0;
-} 
+}
