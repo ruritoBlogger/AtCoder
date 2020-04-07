@@ -78,12 +78,18 @@ int main()
         cin >> a[i] >> b[i] >> c[i];
         edge e = {b[i], c[i]};
         G[a[i]].push_back(e);
-        e = {a[i], c[i]};
-        G[b[i]].push_back(e);
     }
 
     dijkstra(1);
-
-    rep(i,N) cout << d[i] << " ";
+    
+    ll ans = 0;
+    REP(i,2,N+1)
+    {
+        //cout << A[i] * max( (ll)0, T - (d[i]+d[1]) ) << endl;
+        cout << A[i] << " " <<  d[i]+d[1] << endl;
+    }
+    
+    cout << "D is ";
+    rep(i,N+1) cout << d[i] << " ";
     cout << endl;
 }
