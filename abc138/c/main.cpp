@@ -24,5 +24,18 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
+    vector<int> v(N);
+    rep(i,N) cin >> v[i];
 
+    sort(all(v));
+
+    double tmp = (v[0] + v[1])/2.0;
+
+    REP(i,2,N)
+    {
+        tmp = (tmp+v[i])/2.0;
+    }
+    put_double(tmp);
 }

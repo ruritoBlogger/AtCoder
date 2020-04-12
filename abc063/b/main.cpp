@@ -24,5 +24,12 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
 
+    set<char> ans;
+    rep(i,s.size()) ans.insert(s[i]);
+
+    if( ans.size() == s.size() ) cout << "yes" << endl;
+    else cout << "no" << endl;
 }

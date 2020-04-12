@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "code-festival-2017-quala",
+    "title": "CODE FESTIVAL 2017 qual A",
+    "url": "https://atcoder.jp/contests/code-festival-2017-quala"
+  },
+  "tasks": [
+    {
+      "id": "code_festival_2017_quala_a",
+      "label": "A",
+      "title": "Snuke's favorite YAKINIKU",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_a",
+      "directory": {
+        "path": "a",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_quala_b",
+      "label": "B",
+      "title": "fLIP",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_quala_c",
+      "label": "C",
+      "title": "Palindromic Matrix",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_c",
+      "directory": {
+        "path": "c",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_quala_d",
+      "label": "D",
+      "title": "Four Coloring",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_d",
+      "directory": {
+        "path": "d",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_quala_e",
+      "label": "E",
+      "title": "Modern Painting",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_e",
+      "directory": {
+        "path": "e",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_quala_f",
+      "label": "F",
+      "title": "Squeezing Slimes",
+      "url": "https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_quala_f",
+      "directory": {
+        "path": "f",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

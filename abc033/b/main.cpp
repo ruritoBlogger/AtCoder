@@ -24,5 +24,21 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
 
+    vector<string> S(N);
+    vector<ll> P(N);
+    ll total = 0;
+    rep(i,N)
+    {
+        cin >> S[i] >> P[i];
+        total += P[i];
+    }
+
+    std::vector<ll>::iterator iter = std::max_element(all(P));
+    size_t index = std::distance(P.begin(), iter);
+    
+    if( P[index]*2 > total ) cout << S[index] << endl;
+    else cout << "atcoder" << endl;
 }

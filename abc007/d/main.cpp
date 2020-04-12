@@ -21,8 +21,52 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+ll calcDP( string s )
+{
+    vector<vector<vector<ll> > > dp(s.size()+1, vector<vector<ll> > (2, vector<ll>(2,0)));
+    
+    dp[0][0][0] = 1;
+
+    rep(i,s.size())
+    {
+        int key = s[i]-'0';
+        rep(smaller, 2)
+        {
+            rep(isUsed, 2)
+            {
+                // s[i]ぴったし
+                if(!smaller)
+                {
+                    rep(n, key+1)
+                    {
+                        // i+1桁目がs[i+1]とぴったしかどうかで分岐
+                        dp[i+1][n < key][n == 4 || n == 9 || isUsed] += dp[i][smaller][isUsed];
+                    }
+                }
+                else
+                {
+                    rep(n, 10)
+                    {
+                        // i+1桁目がs[i+1]とぴったしかどうかで分岐
+                        dp[i+1][smaller][n == 4 || n == 9 || isUsed] += dp[i][smaller][isUsed];
+                    }
+                }
+            }
+        }
+    }
+
+    return dp[s.size()][0][1] + dp[s.size()][1][1];
+}
+
 
 int main()
 {
+    ll a,b;
+    string A,B;
+    cin >> a >> b;
+    a--;
+    A = to_string(a);
+    B = to_string(b);
 
+    cout << calcDP(B)-calcDP(A) << endl;
 }

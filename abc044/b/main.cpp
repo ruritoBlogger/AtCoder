@@ -24,5 +24,25 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string w;
+    cin >> w;
 
+    set<char> roop;
+    multiset<char> key;
+
+    rep(i,w.size())
+    {
+        roop.insert(w[i]);
+        key.insert(w[i]);
+    }
+
+    for( set<char>::iterator itr = roop.begin(); itr != roop.end(); itr++ )
+    {
+        if( key.count(*itr)%2 != 0 )
+        {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+    cout << "Yes" << endl;
 }

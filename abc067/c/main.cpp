@@ -24,5 +24,20 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    ll N;
+    cin >> N;
+    vector<ll> a(N);
+    rep(i,N) cin >> a[i];
 
+    vector<ll> dp;
+    dp.push_back(0);
+    rep(i,N) dp.push_back(dp[dp.size()-1]+a[i]);
+
+    ll ans = INF_LL;
+    REP(i, 1, N)
+    {
+        //cout << abs( (dp[i]-dp[0]) - (dp[dp.size()-1]-dp[i]) ) << endl;
+        chmin(ans, abs( (dp[i]-dp[0]) - (dp[dp.size()-1]-dp[i]) ));
+    }
+    cout << ans << endl;
 }

@@ -21,8 +21,55 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+#define MAX 510000
+long long fac[MAX], finv[MAX], inv[MAX];
+
+// テーブルを作る前処理
+void COMinit()
+{
+    fac[0] = fac[1] = 1;
+    finv[0] = finv[1] = 1;
+    inv[1] = 1;
+    for (int i = 2; i < MAX; i++)
+    {
+        fac[i] = fac[i - 1] * i % MOD;
+        inv[i] = MOD - inv[MOD % i] * (MOD / i) % MOD;
+        finv[i] = finv[i - 1] * inv[i] % MOD;
+    }
+}
+ 
+// 二項係数計算
+long long COM(int n, int k)
+{
+    if (n < k)
+        return 0;
+    if (n < 0 || k < 0)
+        return 0;
+    return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
+}
+
 
 int main()
 {
+    ll N,M;
+    cin >> N >> M;
+    COMinit();
 
+    ll n = 1;
+    REP(i, 1, N)
+    {
+        n *= COM(i+1, i);
+        n %= MOD;
+    }
+
+    ll m = 1;
+    REP(i, 1, M)
+    {
+        m *= COM(i+1, i);
+        m %= MOD;
+    }
+    
+    if( abs(N-M) > 1 ) cout << 0 << endl;
+    else if( N==M ) cout << n * m * 2%MOD << endl;
+    else cout << n*m%MOD << endl;
 }

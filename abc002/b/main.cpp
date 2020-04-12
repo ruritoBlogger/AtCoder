@@ -24,5 +24,12 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string w;
+    cin >> w;
 
+    rep(i,w.size())
+    {
+        if( w[i] != 'a' && w[i] != 'i' && w[i] != 'u' && w[i] != 'e' && w[i] != 'o' ) cout << w[i];
+    }
+    cout << endl;
 }

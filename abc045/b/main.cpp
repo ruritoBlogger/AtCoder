@@ -24,5 +24,55 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string a,b,c;
+    cin >> a >> b >> c;
 
+    int a_len = a.size();
+    int b_len = b.size();
+    int c_len = c.size();
+
+    int a_key = 0;
+    int b_key = 0;
+    int c_key = 0;
+    queue<char> que;
+    que.push('a');
+
+    while( true )
+    {
+        if( que.front() == 'a' )
+        {
+            if( a_key == a_len )
+            {
+                cout << "A" << endl;
+                return 0;
+            }
+            que.pop();
+            que.push(a[a_key]);
+            a_key++;
+        }
+        else if( que.front() == 'b' )
+        {
+            if( b_key == b_len )
+            {
+                cout << "B" << endl;
+                return 0;
+            }
+            que.pop();
+            que.push(b[b_key]);
+            b_key++;
+        }
+        else
+        {
+            if( c_key == c_len )
+            {
+                cout << "C" << endl;
+                return 0;
+            }
+
+            que.pop();
+            que.push(c[c_key]);
+            c_key++;
+        }
+        //cout << a_key << " " << b_key << " " << c_key << endl;
+    }
 }

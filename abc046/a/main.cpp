@@ -24,5 +24,12 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int a,b,c;
+    cin >> a >> b >> c;
 
+    set<int> ans;
+    ans.insert(a);
+    ans.insert(b);
+    ans.insert(c);
+    cout << ans.size() << endl;
 }

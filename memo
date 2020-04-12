@@ -2,7 +2,67 @@
 10e8は0が9個
 
 --------------------------------------------------------------
+// 桁dp
+// s以下の数値のうち4を含む数の総数
+ll calcDP( string s )
+{
+    vector<vector<vector<ll> > > dp(s.size()+1, vector<vector<ll> > (2, vector<ll>(2,0)));
+    
+    dp[0][0][0] = 1;
 
+    rep(i,s.size())
+    {
+        int key = s[i]-'0';
+        rep(smaller, 2)
+        {
+            rep(isUsed, 2)
+            {
+                // s[i]ぴったし
+                rep(n, (smaller? 10 : key+1))
+                {
+                    dp[i+1][smaller || n < key][n == 4 || n == 9 || isUsed] += dp[i][smaller][isUsed];
+                }
+            }
+        }
+    }
+
+    return dp[s.size()][0][1] + dp[s.size()][1][1];
+}
+
+// s以下の数値に含まれる1の総数
+ll calcDP( string s )
+{
+    vector<vector<vector<ll> > > dp(s.size()+1, vector<vector<ll> > (2, vector<ll>(12,0)));
+    
+    dp[0][0][0] = 1;
+
+    rep(i,s.size())
+    {
+        int key = s[i]-'0';
+        rep(smaller, 2)
+        {
+            rep(one_cnt, 10)
+            {
+                rep(n, (smaller? 10 : key+1))
+                {
+                    if( n == 1 ) dp[i+1][smaller || n < key][one_cnt+1] += dp[i][smaller][one_cnt];
+                    else dp[i+1][smaller || n < key][one_cnt] += dp[i][smaller][one_cnt];
+                }
+            }
+        }
+    }
+
+    ll ans = 0;
+    rep(i,s.size()+1)
+    {
+        ans += (dp[s.size()][0][i]+dp[s.size()][1][i])*i;
+    }
+
+    return ans;
+}
+
+
+--------------------------------------------------------------
 //UnionFind
 
 struct UnionFind {
@@ -314,6 +374,26 @@ vector<vector<ll> > a;
 sort(大きいやつから)
 sort(all(a),greater<vector<ll> >());
 --------------------------------------------------------------
+// 素数判定
+bool isPrime(int num)
+{
+    if (num < 2) return false;
+    else if (num == 2) return true;
+    else if (num % 2 == 0) return false; // 偶数はあらかじめ除く
+
+    double sqrtNum = sqrt(num);
+    for (int i = 3; i <= sqrtNum; i += 2)
+    {
+        if (num % i == 0)
+        {
+            // 素数ではない
+            return false;
+        }
+    }
+
+    // 素数である
+    return true;
+}
 
 最大公約数
 ll gcd(ll x, ll y)

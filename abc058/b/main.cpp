@@ -24,5 +24,10 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string o,e;
+    cin >> o >> e;
 
+    rep(i,e.size()) cout << o[i] << e[i];
+    if( o.size() != e.size() ) cout << o[o.size()-1];
+    cout << endl;
 }

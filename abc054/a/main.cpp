@@ -24,5 +24,18 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int A,B;
+    cin >> A >> B;
 
+    if( A == B ) cout << "Draw" << endl;
+    else if( A < B )
+    {
+        if( A == 1 && B == 13 ) cout << "Alice" << endl;
+        else cout << "Bob" << endl;
+    }
+    else
+    {
+        if( A == 13 && B == 1 ) cout << "Bob" << endl;
+        else cout << "Alice" << endl;
+    }
 }

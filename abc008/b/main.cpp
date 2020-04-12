@@ -24,5 +24,29 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
+    vector<string> S(N);
+    rep(i,N) cin >> S[i];
 
+    set<string> roop;
+    multiset<string> key;
+    rep(i,N)
+    {
+        roop.insert(S[i]);
+        key.insert(S[i]);
+    }
+
+    string ans = "";
+    int cnt = 0;
+
+    for(set<string>::iterator itr = roop.begin(); itr != roop.end(); itr++)
+    {
+        if( cnt < key.count(*itr ))
+        {
+            ans = *itr;
+            cnt = key.count(*itr);
+        }
+    }
+    cout << ans << endl;
 }

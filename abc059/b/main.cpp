@@ -24,5 +24,11 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
-
+    string a,b;
+    cin >> a >> b;
+    if( a.size() > b.size() )cout << "GREATER" << endl;
+    else if( a.size() < b.size() )cout << "LESS" << endl;
+    else if( a > b ) cout << "GREATER" << endl;
+    else if( a < b ) cout << "LESS" << endl;
+    else cout << "EQUAL" << endl;
 }

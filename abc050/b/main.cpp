@@ -24,5 +24,30 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
+
+    vector<int> T(N);
+    rep(i,N) cin >> T[i];
+
+    int M;
+    cin >> M;
+
+    vector<int> P(M);
+    vector<int> X(M);
+    rep(i,M)
+    {
+        cin >> P[i] >> X[i];
+        P[i]--;
+    }
+
+    ll total = 0;
+    rep(i,N) total += T[i];
+
+    rep(i,M)
+    {
+        ll tmp = total - (T[P[i]]-X[i]);
+        cout << tmp << endl;
+    }
 
 }

@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc003",
+    "title": "AtCoder Regular Contest 003",
+    "url": "https://atcoder.jp/contests/arc003"
+  },
+  "tasks": [
+    {
+      "id": "arc003_1",
+      "label": "A",
+      "title": "GPA計算",
+      "url": "https://atcoder.jp/contests/arc003/tasks/arc003_1",
+      "directory": {
+        "path": "a",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc003_2",
+      "label": "B",
+      "title": "さかさま辞書",
+      "url": "https://atcoder.jp/contests/arc003/tasks/arc003_2",
+      "directory": {
+        "path": "b",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc003_3",
+      "label": "C",
+      "title": "暗闇帰り道",
+      "url": "https://atcoder.jp/contests/arc003/tasks/arc003_3",
+      "directory": {
+        "path": "c",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc003_4",
+      "label": "D",
+      "title": "シャッフル席替え",
+      "url": "https://atcoder.jp/contests/arc003/tasks/arc003_4",
+      "directory": {
+        "path": "d",
+        "testdir": "test",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

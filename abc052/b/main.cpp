@@ -24,5 +24,18 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    string s;
+    cin >> N >> s;
 
+    ll ans = 0;
+
+    ll key = 0;
+    rep(i,N)
+    {
+        if( s[i] == 'I' ) key++;
+        else if( s[i] == 'D' ) key--;
+        chmax(ans, key);
+    }
+    cout << ans << endl;
 }

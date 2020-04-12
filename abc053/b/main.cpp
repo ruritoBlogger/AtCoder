@@ -24,5 +24,16 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
 
+    ll A_pos = INF_LL;
+    ll Z_pos = 0;
+    rep(i,s.size())
+    {
+        if( s[i] == 'A' ) chmin(A_pos, (ll)i);
+        else if( s[i] == 'Z' ) chmax(Z_pos, (ll)i);
+    }
+
+    cout << Z_pos - A_pos+1 << endl;
 }

@@ -24,5 +24,33 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
+    vector<int> s(N);
+    rep(i,N) cin >> s[i];
 
+    sort(all(s));
+    ll total = 0;
+    rep(i,N) total += s[i];
+
+    vector<int> ary(N,0);
+    rep(i,N) ary[i] = i;
+
+    ll ans = 0;
+
+    if( total%10 != 0 )
+    {
+        cout << total << endl;
+        return 0;
+    }
+    
+    rep(i,s.size())
+    {
+        if( s[i]%10 != 0 )
+        {
+            cout << total-s[i] << endl;
+            return 0;
+        }
+    }
+    cout << 0 << endl;
 }

@@ -24,5 +24,10 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
 
+    int ans = 2;
+    while( ans*2 <= N ) ans *= 2;
+    cout << min(ans, N) << endl;
 }

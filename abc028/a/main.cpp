@@ -24,5 +24,11 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N;
+    cin >> N;
 
+    if( N < 60 ) cout << "Bad" << endl;
+    else if( N < 90 ) cout << "Good" << endl;
+    else if( N < 100 ) cout << "Great" << endl;
+    else cout << "Perfect" << endl;
 }
