@@ -24,5 +24,8 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int n,m;
+    cin >> n >> m;
 
+    cout << (n-1)*(m-1) << endl;
 }

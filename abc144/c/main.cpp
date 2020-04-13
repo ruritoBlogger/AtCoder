@@ -21,8 +21,30 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+template<typename T> vector<ll> divisor( T n)
+{
+  vector<ll> ret;
+  for(ll i = 1; i * i <= (ll)(n); i++) {
+    if(n % i == 0) {
+      ret.push_back(i);
+      if(i * i != n) ret.push_back(n / i);
+    }
+  }
+  sort(all(ret));
+  return ret;
+}
+
 
 int main()
 {
+    ll N;
+    cin >> N;
+    vector<ll> keys = divisor(N);
+    set<ll> ans;
 
+    rep(i,keys.size())
+    {
+        ans.insert(keys[i]+ N/keys[i]-2);
+    }
+    cout << *ans.begin() << endl;
 }

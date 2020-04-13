@@ -24,5 +24,25 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string s;
+    cin >> s;
 
+    s.erase(s.end()-1);
+    if( s.size()%2 != 0 )s.erase(s.end()-1);
+
+    string front = "";
+    string last = "";
+    rep(i, s.size()/2) front += s[i];
+    REP(i, s.size()/2, s.size()) last += s[i];
+
+    while( front != last )
+    {
+        front = "";
+        last = "";
+        s.erase(s.end()-1);
+        s.erase(s.end()-1);
+        rep(i, s.size()/2) front += s[i];
+        REP(i, s.size()/2, s.size()) last += s[i];
+    }
+    cout << front.size()+last.size() << endl;
 }

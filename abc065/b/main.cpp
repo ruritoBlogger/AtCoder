@@ -21,8 +21,28 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-
 int main()
 {
+    int N;
+    cin >> N;
 
+    vector<int> a(N);
+    rep(i,N) cin >> a[i];
+    set<int> used;
+    
+    used.insert(1);
+    int next = a[0];
+    int ans = 1;
+    while( next != 2 )
+    {
+        if( used.find(next) != used.end() )
+        {
+            cout << -1 << endl;
+            return 0;
+        }
+        used.insert(next);
+        next = a[next-1];
+        ans++;
+    }
+    cout << ans << endl;
 }

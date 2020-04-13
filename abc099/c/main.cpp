@@ -2,9 +2,14 @@
 using namespace std;
 
 #define ll long long
+#define INF_LL 1LL << 60
 #define INF 99999999
+#define MOD (ll)1000000007
 #define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, a, n) for(int i = a; i < (int)(n); i++)
 #define all(x) (x).begin(),(x).end()
+
+void put_double(double obj){printf("%.12f\n",obj);};
 
 template < typename T > std::string to_string( const T& n )
 {
@@ -13,52 +18,54 @@ template < typename T > std::string to_string( const T& n )
     return stm.str() ;
 }
 
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+
+
 int main()
 {
     ll N;
     cin >> N;
 
-    int six_key = 1;
-    int nine_key = 1;
-    priority_queue<ll> q;
-
-    while(true)
+    vector<ll> nines(1,9);
+    vector<ll> sixes(1,6);
+    while( nines[nines.size()-1]*9 <= N )
     {
-        if( pow(6, six_key) <= N )
-        {
-            q.push(pow(6, six_key));
-            six_key++;
-            
-            if( pow(9, nine_key) <= N )
-            {
-                q.push(pow(9, nine_key));
-                nine_key++;
-            }
-            else break;
-        }
-        else break;
+        nines.push_back(nines[nines.size()-1]*9);
+    }
+    while( sixes[sixes.size()-1]*6 <= N )
+    {
+        sixes.push_back(sixes[sixes.size()-1]*6);
     }
 
-    vector<int> dp(N+1,INF);
-    dp[0] = 0;
+    vector<ll> keys(1,1);
+    rep(i,nines.size()) keys.push_back(nines[i]);
+    rep(i,sixes.size()) keys.push_back(sixes[i]);
+    sort(all(keys),greater<ll>());
 
-    rep(i,N+1)
+    vector<vector<ll> > dp(keys.size()+1, vector<ll>(N+1, INF_LL));
+    dp[0][0] = 0; 
+
+    rep(i, keys.size())
     {
-        priority_queue<ll> tmp = q;
-        rep(j,q.size())
+        rep(j,N+1)
         {
-            int tmp_N = i;    
-            while( tmp_N - tmp.top() <= i )
+            if( keys[i] <= j )
             {
-                dp[i] = min( dp[i], dp[i-tmp.top()] + 1);
-                tmp_N -= tmp.top();
+                chmin(dp[i+1][j], dp[i][j-keys[i]]+1);
+                chmin(dp[i+1][j], dp[i+1][j-keys[i]]+1);
             }
-            tmp.pop();
+            chmin(dp[i+1][j], dp[i][j]);
         }
     }
-    cout << dp[N] << endl; 
-
-
-
     
+    /*
+    rep(i, dp.size())
+    {
+        rep(j, dp[i].size()) cout << dp[i][j] << " ";
+        cout << endl;
+    }
+    */
+
+    cout << dp[keys.size()][N] << endl;
 }
