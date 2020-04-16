@@ -24,5 +24,20 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int A,B,C;
+    cin >> A >> B >> C;
 
+    vector<ll> keys;
+    keys.push_back(B+C);
+    rep(i, 100) keys.push_back(keys[keys.size()-1]+B);
+
+    rep(i, keys.size())
+    {
+        if( keys[i]%A == 0 )
+        {
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+    cout << "NO" << endl;
 }

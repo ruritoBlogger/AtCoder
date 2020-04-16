@@ -24,5 +24,9 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    string a,b,c;
+    cin >> a >> b >> c;
+
+    cout << (char)(a[0] - 0x20) << (char)(b[0] - 0x20) << (char)(c[0] - 0x20) << endl;
 
 }

@@ -195,6 +195,10 @@ setに突っ込むと -> "ABab" となる
 if(tmp[i] < 'a' ) 大文字
 else 小文字
 
+小文字から大文字変換
+
+tmp[1] = (char)(tmp[1] - 0x20) // AABb
+
 --------------------------------------------------------------
 
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }

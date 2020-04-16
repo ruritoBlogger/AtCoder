@@ -28,19 +28,30 @@ ll gcd(ll x, ll y)
 	return y==0 ? x:gcd(y,x % y);
 }
 
+template<typename T> vector<ll> divisor( T n)
+{
+  vector<ll> ret;
+  for(ll i = 1; i * i <= (ll)(n); i++) {
+    if(n % i == 0) {
+      ret.push_back(i);
+      if(i * i != n) ret.push_back(n / i);
+    }
+  }
+  sort(all(ret));
+  return ret;
+}
 
 int main()
 {
-    int N;
-    cin >> N;
-    vector<ll> a(N);
-    rep(i,N) cin >> a[i];
-    sort(all(a));
+    int A,B,K;
+    cin >> A >> B >> K;
+    
+    int key = gcd(A,B);
+    vector<ll> ans = divisor(key);
+    reverse(all(ans));
+    //rep(i, ans.size()) cout << ans[i] << endl;
+    cout << ans[K-1] << endl;
 
-    ll key = a[0];
-    REP(i, 1, N)
-    {
-        key = gcd(key, a[i]);
-    }
-    cout << key << endl;
+    
+
 }

@@ -24,5 +24,10 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int A,B;
+    cin >> A >> B;
+
+    if( A+B > 23 ) cout << A+B-24 << endl;
+    else cout << A+B << endl;
 
 }

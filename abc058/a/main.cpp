@@ -24,5 +24,10 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int a,b,c;
+    cin >> a >> b >> c;
+
+    if( b-a==c-b ) cout << "YES" << endl;
+    else cout << "NO" << endl;
 
 }

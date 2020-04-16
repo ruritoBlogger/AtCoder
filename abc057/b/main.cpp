@@ -24,5 +24,18 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
+    int N,M;
+    cin >> N >> M;
+
+    vector<ll> a(N);
+    vector<ll> b(N);
+    rep(i,N) cin >> a[i] >> b[i];
+
+    vector<ll> c(M);
+    vector<ll> d(M);
+    rep(i,M) cin >> c[i] >> d[i];
+
+
+
 
 }
