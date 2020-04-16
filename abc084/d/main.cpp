@@ -21,26 +21,29 @@ template < typename T > std::string to_string( const T& n )
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-std::vector<int> Eratosthenes( const int N )
+vector<bool> prime_numbers()
 {
-    std::vector<bool> is_prime( N + 1 );
-    for( int i = 0; i <= N; i++ )
+    vector<bool>primeNum(100005, true);
+    primeNum.at(0) = false; primeNum.at(1) = false;
+ 
+    int N = 100001;
+    REP(x, 2, floor(sqrt(N)))
     {
-        is_prime[ i ] = true;
-    }
-    std::vector<int> P;
-    for( int i = 2; i <= N; i++ )
-    {
-        if( is_prime[ i ] )
+        if (primeNum.at(x) == false) continue;
+     
+        for(int y = x; y < N; y += x)
         {
-            for( int j = 2 * i; j <= N; j += i )
+            if (y == x)
             {
-                is_prime[ j ] = false;
+                primeNum.at(y) = true;
             }
-            P.emplace_back( i );
+            else 
+            {
+                primeNum.at(y) = false;
+            }
         }
     }
-    return P;
+    return primeNum;
 }
 
 int main()
@@ -51,22 +54,16 @@ int main()
     vector<int> l(Q);
     vector<int> r(Q);
     rep(i,Q) cin >> l[i] >> r[i];
-    vector<bool> isPrime(1e5, false);
-
-    vector<int> primes = Eratosthenes(1e5);
-    
-    rep(i, primes.size())
-    {
-        isPrime[i-1] = true;
-    }
+    vector<bool> isPrime = prime_numbers();
 
     vector<ll> dp(1, 0);
     rep(i, isPrime.size())
     {
-        if( isPrime[i] ) dp.push_back(dp[dp.size()-1]+1);
+        if( isPrime[i] && isPrime[(i+1)/2] ) dp.push_back(dp[dp.size()-1]+1);
         else dp.push_back(dp[dp.size()-1]);
     }
     rep(i, Q)
     {
+        cout << dp[r[i]+1] - dp[l[i]] << endl;
     }
 }

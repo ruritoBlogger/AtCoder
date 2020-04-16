@@ -378,6 +378,32 @@ vector<vector<ll> > a;
 sort(大きいやつから)
 sort(all(a),greater<vector<ll> >());
 --------------------------------------------------------------
+// 素数判定(複数)
+vector<bool> prime_numbers()
+{
+    vector<bool>primeNum(100005, true);
+    primeNum.at(0) = false; primeNum.at(1) = false;
+ 
+    int N = 100001;
+    REP(x, 2, floor(sqrt(N)))
+    {
+        if (primeNum.at(x) == false) continue;
+     
+        for(int y = x; y < N; y += x)
+        {
+            if (y == x)
+            {
+                primeNum.at(y) = true;
+            }
+            else 
+            {
+                primeNum.at(y) = false;
+            }
+        }
+    }
+    return primeNum;
+}
+
 // 素数判定
 bool isPrime(int num)
 {
