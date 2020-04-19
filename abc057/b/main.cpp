@@ -35,7 +35,20 @@ int main()
     vector<ll> d(M);
     rep(i,M) cin >> c[i] >> d[i];
 
-
+    rep(i,N)
+    {
+        int near_point = 1;
+        ll dist = abs(a[i]-c[0])+ abs(b[i]-d[0]);
+        REP(j, 1, M)
+        {
+            if( abs(a[i]-c[j])+abs(b[i]-d[j]) < dist )
+            {
+                dist = abs(a[i]-c[j])+abs(b[i]-d[j]);
+                near_point = j+1;
+            }
+        }
+        cout << near_point << endl;
+    }
 
 
 }
