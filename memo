@@ -275,6 +275,11 @@ long long COM(int n, int k)
     return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
 }
 
+ll COM(ll n,ll r){
+    if(r==1)return n;
+    if(r==2)return n*(n-1)/2;
+    return n*(n-1)*(n-2)/6;
+}
 
 --------------------------------------------------------------
 
